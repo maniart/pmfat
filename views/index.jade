@@ -1,5 +1,30 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to PMFAT
+  .container
+    .row
+      .col-xs-12.col-md-2.call-to-action
+        h3 Compose your own Preliminary Materials for any Theory
+      .col-xs-12.col-md-10.inputs
+        form(role="form").user-input.form-inline#user-input
+          .form-group
+            label(for="user-first-name") Author's Name:
+            input(type="text", placeholder="", name="user-first-name").form-control#user-first-name
+            label(for="user-first-name").sr-only Author's Last Name:
+            input(type="text", placeholder="", name="user-last-name").form-control#user-last-name
+          .form-group
+            label(for="object-of-critique") Choose your object of critique:
+            input(type="text", placeholder="", name="object-of-critique").form-control#object-of-critique  
+          .form-group
+            label(for="adjective") Choose your adjective:
+            input(type="text", placeholder="", name="adjective").form-control#adjective
+          .form-group
+            label(for="protagonist-pronoun") Choose your desired pronoun for the theoretical protagonist:
+            input(type="text", placeholder="", name="protagonist-pronoun").form-control#protagonist-pronoun
+          .form-group
+            label(for="antagonist-pronoun") Choose your desired pronoun for the theoretical antagonist:
+            input(type="text", placeholder="", name="antagonist-pronoun").form-control#antagonist-pronoun
+          .form-group
+             button(type="submit").btn.btn-primary.btn-lg Generate
+
+
