@@ -74,7 +74,6 @@ router.post('/', function(req, res) {
 
         })
     );
-    console.log('entry created ', entry);
     // save the entry
     entry.save(function(err, out) {
         
@@ -108,9 +107,7 @@ router.post('/', function(req, res) {
                 console.log('saving to this path: ', path.join(pdfPath, pdfFileName));
                 page.render(path.join(pdfPath, pdfFileName), function(err, out) {
 
-                    // file is now written to disk
                     console.log('done saving pdf file');
-                    //ph.exit();
                     
                 });
 
@@ -136,6 +133,9 @@ router.post('/', function(req, res) {
 
                     // file is now written to disk
                     console.log('done saving png file');
+                    
+                    res.send({redirect: '/archive'});    
+                    
                     ph.exit();
                     
                 });
@@ -145,7 +145,7 @@ router.post('/', function(req, res) {
         });
     /* END PHANTOM */
     }); 
-    res.send({redirect: '/archive'});
+    
 });
 
 

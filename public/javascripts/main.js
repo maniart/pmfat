@@ -1,8 +1,20 @@
-var pmfat = (function(w, d, $) {
+var pmfat = (function(w, d, $, _) {
 
 	var init,
 		attachListeners,
-		initAnchorScroll;
+		initAnchorScroll,
+		sanitizeFormData,
+		modal;
+
+	sanitizeFormData = function(serializedFormData) {
+		if(!serializedFormData instanceof Array) {
+			throw new Error('Serialized Form Data needs to be an array');
+		}
+		_.each(serializedFormData, function(input) {
+			input.value = $.trim(input.value);
+		});
+		return serializedFormData;
+	};
 
 	initAnchorScroll = function() {
     	$('a[href*=#]:not([href=#])').click(function() {
@@ -25,8 +37,9 @@ var pmfat = (function(w, d, $) {
 		var formData;
 		$('#user-input').on('submit', function(event) {
 			event.preventDefault();
-			//console.log('form submtted');
-			formData = $(this).serializeArray();
+			
+			formData = sanitizeFormData($(this).serializeArray()); // trim whitespace
+			modal.modal('show'); // show modal while PDF is being generated
 			$.ajax({
 				type: "POST",
 				url: "/api",
@@ -41,13 +54,19 @@ var pmfat = (function(w, d, $) {
 			.done(function( data, textStatus, jqXHR ) {
 			    console.log( "Data Saved: " , data );
 		  	});
+			
 		});
 	};
 
 	init = function() {
+		modal = $('#waitModal').modal({
+			show : false,
+			keyboard : false,
+			backdrop: 'static'
+		});
 		attachListeners();
 		initAnchorScroll();
-		console.log('Made in Brooklyn.');
+		console.log('Made in Industry City, Sunset Park, Brooklyn.');
 	};
 
 
@@ -56,6 +75,6 @@ var pmfat = (function(w, d, $) {
 		init : init
 	};
 
-}(window, document, jQuery));
+}(window, document, jQuery, _));
 
 jQuery(document).ready(pmfat.init);
