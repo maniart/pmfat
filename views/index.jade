@@ -1,7 +1,48 @@
 extends layout
 
 block content
-  .container
+  .container.cover
+    .row 
+      .col-md-8.col-md-offset-2
+        p.
+          This website is a project by artist, critic and curator Mohammad Salemy that uses an abbreviated version of the french collective Tiqqun's Preliminary Notes For a Theory of the Young Girl as a template towards instant generation of theoretical text by Internet users. 
+        p.
+          By changing a few parameters within the original text, users can refocus the critical lens embedded in this seminal text towards other objects of inquiry.
+      .scroll-down
+        a(href="#generate")
+          button(type="button" class="btn btn-default btn-lg generate-text")  
+            span.text  Generate Your Preliminary Materials
+            span.glyphicon.glyphicon-chevron-down
+  .container.generate(name="generate")
     .row
-      h1 Please check back in a couple of hours!
-      
+      .col-md-8.col-md-offset-2.inputs
+        form(role="form").user-input.form-inline#user-input
+          .form-group
+            label(for="user-first-name") Author's Name:
+            input(type="text", placeholder="", name="firstName", required).form-control#user-first-name
+            label(for="user-first-name").sr-only Author's Last Name:
+            input(type="text", placeholder="", name="lastName", required).form-control#user-last-name
+          .form-group
+            label(for="object-of-critique") Choose your object of critique:
+            input(type="text", placeholder="", name="objectOfCritique", required).form-control#object-of-critique
+          .form-group
+            label(for="antagonist") Choose your antagonist:
+            input(type="text", placeholder="", name="antagonist", required).form-control#antagonist  
+          .form-group
+            label(for="adjective") Choose your adjective:
+            input(type="text", placeholder="", name="adjective", required).form-control#adjective
+          .form-group
+            label(for="protagonist-pronoun") Choose your desired pronoun for the object of critique:
+            select(name="protagonistPronoun", required).form-control#protagonist-pronoun
+              option she
+              option he
+              option it
+          .form-group
+            label(for="antagonist-pronoun") Choose your desired pronoun for the antagonist:
+            select(name="antagonistPronoun", required).form-control#antagonist-pronoun
+              option she
+              option he
+              option it
+          .form-group.submit-btn
+             button(type="submit" data-loading-text="Generating...").btn.btn-primary.btn-lg.do-generate Generate!
+

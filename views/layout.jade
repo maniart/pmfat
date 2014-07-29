@@ -4,11 +4,11 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     title Preliminary Materials for Any Theory
-    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/main.css')
-    script(type='text/javascript' src='//code.jquery.com/jquery-2.1.1.min.js')
+    script(type='text/javascript' src='/bower_components/jquery/dist/jquery.min.js')
     script(type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js')
-    script(type='text/javascript' src='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+    script(type='text/javascript' src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
     script(type='text/javascript' src='/javascripts/main.js')
     style(type='text/css').
       .manifesto {
@@ -27,7 +27,8 @@ html(lang='en')
               ul.nav.navbar-nav.navbar-right
                 li
                   a(href="/about") About
-               
+                li
+                  a(href="/archive") Archive
 
     block content
 

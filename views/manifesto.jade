@@ -4,6 +4,11 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     title Preliminary Materials for Any Theory
+    script(type='text/javascript').
+      window.onload = function() {
+        var textDiv = document.querySelector('div.page.serif.text');
+        var textDivHeight = textDiv.clientHeight;
+      };
     style(type='text/css').
       *, *:before, *:after {
         -webkit-box-sizing: border-box; 
@@ -14,8 +19,7 @@ html(lang='en')
         padding: 0;
       }
       body {
-        margin: 0;
-        padding: 0; 
+        margin: 0; 
         height: 9.79in;
         width: 6.2in;        
       }
@@ -29,6 +33,12 @@ html(lang='en')
         position: relative;
         page-break-after: always;
       }
+      .break {
+        page-break-after: always;
+        width: 100%;
+        height: 1px;
+        background-color: white;
+      }
       .page>p {
 
       }
@@ -39,8 +49,13 @@ html(lang='en')
         font-family: serif;
       }
       .author {
+        top: 60px;
+        left: 60px;
+        position: absolute;
+        /*
         margin-top: 75px;
         margin-left: 60px;
+        */
         font-weight: normal;
         font-size: 14pt;
         padding-bottom: 10px;
@@ -49,15 +64,25 @@ html(lang='en')
         color: white;
       }
       .title {
+        left: 60px;
+        top: 250px;
+        position: absolute;
+        /*
         margin-left: 60px;
         margin-top: 150px;
+        */
         font-weight: normal;
         font-size: 18pt;
         color: white;
       }
       .subtitle {
-        margin-left: 60px;
-        margin-top: 25px;
+        /*
+          margin-left: 60px;
+          margin-top: 25px;
+        */
+        position: absolute;
+        left: 60px;
+        top: 275px;
         font-size: 30pt;
         font-weight: normal;
         color: white;
@@ -69,16 +94,12 @@ html(lang='en')
         bottom: 50px;
         left: 60px;
       }
-      .manifesto {
-        
-      }
       .graphic {
         display: block;
         height: 9.79in;
         width: 6.2in;
       }
       .page.text {
-        padding: 70px 100px;
         font-size: 14px!important;
         font-family: serif!important;
       }
@@ -86,12 +107,24 @@ html(lang='en')
         font-family: serif!important;
         color: rgb(80,80,80);
         text-align: justify;
-        line-height: 1.2;
+        line-height: 21px;
         font-size: 18px;
       }
       .page.text h1 {
         font-size: 20px;
         text-align: center;
+      }
+      .subtitle > span {
+        text-transform: capitalize;
+      }
+      .text > p {
+        margin-bottom: 15px;
+      }
+      .adjective {
+        text-transform: capitalize;
+      }
+      .uppercase {
+        text-transform: uppercase;
       }
 
   body
@@ -99,20 +132,789 @@ html(lang='en')
     .page.sans-serif.cover
       h3.author= name
       h1.title Preliminary Materials For
-      h2.subtitle Any Theory
+      h2.subtitle
+        |  Theory of the 
+        span.adjective= adjective
+        | -
+        =objectOfCritique
       .footer
         |  semiotext(e) 
         |  interventios 
         |  series 12 
     .page.sans-serif
-        img.graphic(src="file://localhost/Users/maniart/Dropbox/projects/webapp-pmfat/public/images/graphic.jpg") 
+        img.graphic(src="file:///Users/maniart/Dropbox/projects/webapp-pmfat/public/images/graphic.jpg") 
     .page.serif.text
       h1 I
       p
         |  Behind the hypnotized grimaces of official pacification there is a war. We can no longer merely call it economic, or social, or humanitarian. It has become total. By now everyone has felt their existence becoming a battlefield on which neuroses, phobias, somatizations, depression, and anxiety each beat their respective retreats; yet nobody has managed to grasp the meaning of their trajectory or what is really at stake. Paradoxically, it is the total nature of this war—total in its means no less than its ends—that has allowed it to cloak itself in such invisibility.
+      p
         |  Empire prefers quiet methods over open offensives: chronic prevention, the molecular diffusion of constraint into everyday life. Here, internal police run relay for the generalized police state, just as individual self-control does for social control. Ultimately, it’s the omnipresence of the new police that has made them undetectable.     
       h1 II
+      .break
       p
-        |  What is at stake in the current war are forms-of-life, which is to say, for Empire, the selection, management, and attenuation of same. Empire’s stranglehold over the public articulation of desires, the biopolitical monopoly on all medical know-how, the constraint of all deviance by an army ever better equipped with psychiatrists, coaches, and other benevolent “facilitators,” the aesthetico-detective filing of each individual according to her/his biological determinations, to the ever more imperative and detailed surveillance of behavior, the proscription against “violence” in the plebiscite, It is a matter of breathing and of the fullness of all passions. All this enters into the anthropological project, or rather the anthropotechnical project of Empire. It is a matter of profiling its citizens.
+        |  What is at stake in the current war are forms-of-life, which is to say, for Empire, the selection, management, and attenuation of same. Empire’s stranglehold over the public articulation of desires, the biopolitical monopoly on all medical know-how, the constraint of all deviance by an army ever better equipped with psychiatrists, coaches, and other benevolent “facilitators,” the aesthetico-detective filing of each individual according to her/his biological determinations, to the ever more imperative and detailed surveillance of behavior, the proscription against “violence” in the plebiscite, It is a matter of breathing and of the fullness of all passions. 
+        .break
+        | All this enters into the anthropological project, or rather the anthropotechnical project of Empire. It is a matter of profiling its citizens.
+      p
         |  The vanquished in this war are not so much citizens as those who, though denying its reality, have capitulated to it totally: What THEY allow to the vanquished, in the guise of “existence,” is nothing but a lifelong struggle to render themselves compatible with Empire. But for the others, for us, our every gesture, our every desire, our every affect encounters, at whatever distance, the need to annihilate Empire and its citizens. It is a matter of breathing and of the fullness of all passions. We have time on this criminal path; nothing is forcing us to seek direct confrontation. That would be proof of weakness. Assaults will be launched, however, assaults that will be less important than the position from which they will originate, for our assaults mine Empire’s forces just as our position mines its strategy. Accordingly, the more Empire will seem to be accumulating victories, the deeper it will bury itself in defeat, and the more this defeat will become irremediable. Imperial strategy consists first of organizing the blindness of forms-of-life and their illiteracy when it comes to ethical differences, of rendering the battlefield difficult to distinguish if not invisible, and, in the most critical cases, of covering the real war in makeup via all manner of false conflicts.
-        |  Retaking the offensive for our side is a matter of making the battlefield manifest. The figure of the Protagonist is a vision machine conceived to this effect. Some will use it to account for the massive character of hostile occupation forces in our existences; others, more vigorous, will use it to determine the speed and direction of their progression. By what each individual does with PPP we can see what AP deserves.  
+      p
+        |  Retaking the offensive for our side is a matter of making the battlefield manifest. The figure of the 
+        span.adjective= adjective
+        | -
+        =objectOfCritique 
+        |  is a vision machine conceived to this effect. Some will use it to account for the massive character of hostile occupation forces in our existences; others, more vigorous, will use it to determine the speed and direction of their progression. By what each individual does with 
+        =PPP 
+        |  we can see what 
+        =AP 
+        |  deserves.  
+      h1 III
+      p
+        |  Listen: The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique 
+        |  is explicitly not a gendered concept. A hip-hop nightclub player is no less a 
+        span.adjective= adjective 
+        | -
+        =objectOfCritique 
+        |  than a North African Girl tarted up like a porn star. The resplendent corporate-advertising retiree who divides 
+        =APP 
+        |  leisure between the Cote d’Azur and 
+        =APP 
+        |  Paris offices, where 
+        =AP 
+        |  still likes to keep an eye on things, is no less a 
+        span.adjective= adjective
+        | -
+        =objectOfCritique 
+        |  than the urban single lady too obsessed with 
+        =PPP 
+        |  consulting career to notice 
+        =PP 
+        |  has lost fifteen years of 
+        =PPP 
+        |  life to it. And how could we account for the secret rapport between ultratrendy musclebound 
+        =antagonist
+        |  and the Americanized petite bourgeoisie happily installed in the suburbs with their plastic families, if the 
+        span.adjective=adjective
+        |  -
+        =objectOfCritique
+        |  were a gendered concept? In reality, the
+        span.adjective= adjective
+        | -
+        =objectOfCritique
+        |  is simply the model citizen as redefined by consumer society since World War I, in explicit response to revolutionary menace. As such, the 
+        span.adjective= adjective
+        | -
+        =objectOfCritique
+        |  is a polar figure, orienting, rather than dominating, outcomes. At the beginning of the 1920s, capitalism realized that it could no longer maintain itself as the exploitation of 
+        =antagonist
+        |  labor if it could not also colonize everything that is beyond the strict sphere of production. Faced with socialist menace, capital too would have to socialize. It had to create its own culture, its own leisure, medicine, urbanism, sentimental education, and mores, as well as a disposition toward their perpetual renewal. This was the Fordist compromise, the Welfare-State, family planning: social democratic capitalism. Under a somewhat limited submission to labor, since workers still distinguished themselves from their own work, we today substitute integration with subjective and existential conformity, which is to say, fundamentally, with consumption.
+        |  The formal domination of Capital has become more and more real. Consumer society has come to seek out its best supports from among the marginalized elements of traditional society—women and youth first, followed by homosexuals and immigrants. To those who were minorities yesterday, and who had therefore been the most foreign, the most spontaneously hostile to consumer society, not having yet been bent to the dominant norms of integration, this gives an air of emancipation. “Young people and their mothers,” recognized Stuart Ewen, “had been the social principles of the consumer ethic.” Young people, because adolescence is the “period of time with none but a consumptive relation to civil society” (Stuart Ewen, Captains of Consciousness). And women, because it is the sphere of reproduction, over which they still reign and which must be colonized. Hypostasized Youth and Femininity, abstracted and recoded into Youthitude and Femininitude, find themselves elevated to the rank of ideal regulators of the integration of the Imperial citizenry. The figure of the 
+        span.adjective= adjective
+        | -
+        =objectOfCritique
+        |  these two determinations into one immediate, spontaneous, and perfectly desirable unit. The tomboy would come to impose herself as a modernity more stunning than all the stars and starlets that so rapidly invaded the globalized imaginary. Albertine, encountered on the seawall of a resort town, arrives to infuse 
+        =PPP 
+        |  casual and pansexual vitality into the crumbling universe of Marcel Proust’s In Search of Lost Time. The schoolgirl reigns down the law in Witold Gombrowicz’s Ferdydurke. A new figure of authority is born and 
+        =PP 
+        |  outclasses them all.
+      h1 IV
+      
+      p
+        |  At the present hour, humanity, by now reformatted into the Spectacle and biopolitically neutralized, still thinks it’s fooling someone, calling itself “citizen.” Women’s magazines breathe new life into a nearly hundred-year-old wrong by finally offering their equivalent to males. All the old figures of patriarchal authority, from statesmen to bosses to cops, have become 
+        span.adjective= adjective
+        | -
+        =objectOfCritique
+        |  ified, every last one of them, even the pope.
+      h1 V
+      p
+        |  The theory of the Protagonist does not simply emerge fortuitously at the very moment that the genesis of the imperial order is complete and begins to be apprehended as such. Whatever emerges to the light of day is nearing the end of its term. In its turn the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  party will have to break up. As we see, the very moment that the evidence of the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  attains the force of a cliché, the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has already overcome it, at least in 
+        =PPP 
+        |  primitive aspect of obscenely sophisticated mass production. It is into this juncture of critical transition that we throw our monkey wrench.          
+      h1 VI
+      p
+        |  Aside from speaking improperly—which could well be our intention—the jumble of fragments that follows does not in any way constitute a theory. These are materials accumulated by chance encounter, by frequenting and observing 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  : pearls excerpted from their magazines, expressions gleaned out of order under sometimes doubtful circumstances. They are assembled here under approximate rubrics, just as they were published in Tiqqun 1; there was no doubt they needed to be put in order a little. The choice to expose these elements in all their incompleteness, in their contingent original state, in their ordinary excess, knowing that if polished, hollowed out, and given a good trim they might together constitute an altogether presentable doctrine, we have chosen—just this once—trash theory. The cardinal ruse of theoreticians resides, generally, in the presentation of the result of their deliberations such that the process of deliberation is no longer apparent. We wager that, faced with Bloomesque fragmentation of attention, this ruse no longer works. We have chosen a different one. Among these scattered things, spirits attracted to moral comfort or vice in need of condemning will find only roads that lead nowhere. Our task is less a matter of converting 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  than to tracing all of the dark corners of the fractalized face of 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  ization. And to furnish arms for a struggle, step-by-step, blow-by-blow, wherever you may find yourself.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  as Compact Political Device
+      p
+        |  More distinctively, but no less fundamentally than any commodity, the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  constitutes an offensive neutralization device. How could capitalism have managed to mobilize affects, molecularizing its power to the point of colonizing all of our feelings and emotions, if the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  had not proposed herself as intermediary?
+      p
+        |  Like the economy, the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  thinks 
+        =PP 
+        |  has got us through infrastructure.
+      p
+        |  “Stay on the bright side of life,” since History’s happening on the dark side.
+      p
+        |  Biopower is available in cream, pill, and vaporizer form.
+      p
+        |  Seduction is the new opium of the masses. It is liberty for a world without liberty, joy for a world without joy.
+      p
+        |  The terrible example, from the past, of a few liberated women has been enough to convince the dominant powers of the opportunity of prohibiting all feminine freedom.
+      p
+        |  By sentiment, by physiology, by family, by “sincerity,” by “health,” by wants, by obedience to all social determinisms, by all means, the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  protects herself from liberty.
+      p
+        |  Behind an appearance of hilarious neutrality, the most redoubtable of political-oppression devices is on view in the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  .
+      p
+        |  “Is your sex life normal?”
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  advances like a living engine, directed by, and directing herself toward the Spectacle.
+      p
+        |  The dominant power has discovered a bias more powerful than the simple power of constraint: directed attraction.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is the elementary biopolitical individuality.
+      p
+        |  Historically, the
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |   appears, in 
+        =PPP 
+        |  extreme affinity with Biopower, as the spontaneous addressee of all biopolitics, the one whom THEY address.
+      p
+        |  “Eating badly is a luxury, a sign of laziness.
+      p
+        |  Disdain for the body is a completely complacent relation to self. The female worker must maintain 
+        =PPP 
+        |  corporeal capital (gym, pool), while for the student, most important are aesthetics (dance) or the ultimate physical expenditure: the nightclub.”
+      p
+        |  The function of the
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is to transform the promise of liberty contained in the achievement of Western civilization into a surplus of alienation, a deepening of the consumer order, new servitudes, a political status quo. The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  lives in the same horizon as Technology: that of a formal spiritualization of the world.
+      p
+        |  Under the domination of the market, seduction immediately presents itself as the exercise of a power.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has neither opinions nor positions of 
+        =PPP 
+        |  own.
+      p
+        =PP 
+        |  takes shelter as soon as 
+        =PP 
+        |  can in the shadow of the winners.
+      p
+        |  The “modern” kind of work, in which it is not a certain quantity of force that is made profitable, but rather the docile exercise of certain “
+        =antagonist
+        |  qualities,” conforms admirably to the mimetic competencies of the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  .
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  conceives liberty as the possibility of choosing from among a thousand insignificances.
+      p
+        |  The
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  does not want history.
+      p
+        |  The  
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  aims for the regulation of all the senses.
+      p
+        |  In the world of authoritarian commodities, all naive praise of desire immediately becomes praise of servitude.
+      p
+        |  No slave of semiocracy does not also get a certain power of judgment, blame, or opinion out of it.
+      p
+        |  The Spectacle restricts the body in the excess of its evocation, just as religion evoked it by excessively restricting it.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  prizes “sincerity,” “good-heartedness,” “kindness,” “simplicity,” “frankness,” “modesty,” and in general all of the virtues that, considered unilaterally, are synonymous with servitude. The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  lives in the illusion that liberty is found at the end of total submission to commodity “Advertising.” But at the end of this term of servitude there is nothing but old age and death.
+      p
+        |  “LIBERTY DOESN’T EXIST,” SAYS THE
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  , WALKING INTO THE DRUGSTORE.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  wants to be “independent,” which is to say, in 
+        =PPP 
+        |  spirit, dependent only on THEM.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is the central article of permissive consumption and commodity leisure.
+      p
+        |  In the Spectacle, access to liberty is nothing but access to marginal consumption of the desire marketplace, which constitutes its symbolic heart.
+      p
+        |  The preponderance of the entertainment and desire market is a stage in the social-pacification enterprise, in which it has been given the function of obscuring, provisionally, the living contradictions that cross every point on the fabric of imperial biopolitics.
+      p
+        |  The symbolic privileges accorded by the Spectacle to the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  are 
+        =PPP 
+        |  dividends for absorbing and diffusing the ephemeral codes, the updated user’s manuals, the general semiology that THEY have had to dispense in order to render politically harmless the free time that the “progress” in the social organization of labor has enabled.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  as central pivot of “permissive discipline.”
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  as ambience and hospitality agent in the dictatorial management of leisure.
+      p
+        |  Deep down inside, the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has the personality of a tampon: 
+        =PP 
+        |  exemplifies all of the appropriate indifference, all of the necessary coldness demanded by the conditions of metropolitan life.
+      p
+        |  WHEN THE SPECTACLE ATTEMPTS TO “PRAISE FEMININITY,” OR REGISTERS MORE PLAINLY THE “
+        span.uppercase= adjective
+        |  -
+        span.uppercase= objectOfCritique
+        |  ization OF THE WORLD,” ONE CAN ONLY EXPECT THE INSIDIOUS PROMOTION OF ALL MANNER OF SERVITUDE AND OF THE CONSTELLATION OF “VALUES” THAT SLAVES ALWAYS PRETEND TO ESPOUSE.
+      p
+        |  “Ew! You’re gross!”
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  already represents the most performative of the agents of behavioral control. Through her, the dominant power has extended to the farthest reaches of the life of every person.
+      p
+        |  The violence with which 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  itude is administrated in the world of the authoritarian marketplace recalls the way the dominant power feels free to manhandle its slaves, when in fact it needs them to ensure its own reproduction.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is the power against which it is barbarous, indecent, and even completely totalitarian to rebel.
+      p
+        |  In the world of the authoritarian marketplace, the living recognize, in their alienated desires, a demonstration of power that has been made inside them by the enemy.
+      p
+        |  The Young Girl as War Machine
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  displays spontaneous assent to everything that could possibly signify subservience to any necessity—“life,” “society,” “work,” the education of a child, another 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  . But this assent is itself determined in exclusively negative fashion: Assent is given to these things only insofar as they block all individual expression.
+      P
+        |  There is always a penal colony hiding behind the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  ’s vitrified smile.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  knows no other legitimacy but that of the Spectacle. Inasmuch as the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is docile under the arbitrary rule of THEM, 
+        =PP 
+        |  is tyrannical when it comes to the living. 
+        =PPP 
+        |  submission to the impersonality of the Spectacle is what acquires for 
+        =PPS 
+        |  the right to submit anyone else to it.
+      p
+        |  In fucking as in all other sectors of 
+        =PPP 
+        |  existence, the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  behaves like a formidable mechanism for the annihilation of negativity. Because the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is the living presence of everything that humanly wants our death, 
+        =PP 
+        |  is not only the purest product of the Spectacle: 
+        =PP 
+        |  is the plastic proof of our love for it. It is through 
+        =PPS 
+        |  that we ourselves pursue our own perdition.
+      p
+        |  Everything 
+        =PP 
+        |  has managed to neutralize takes its place, in the world of the
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  , as an ACCESSORY.
+      p
+        |  Seduction as war. THEY speak of “bombshells” using a metaphoric register that borrows less and less from aesthetic discourse and more and more from that of ballistics.
+      p
+        |  Among the troops occupying all visibility,
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  are the infantry, the rank and file of the current dictatorship of appearances.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  finds herself in a relationship of immediacy and affinity with everything that is competing to reformat humanity.
+      p
+        |  Every 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  constitutes, in 
+        =PPP 
+        |  own way, an advanced position in the imperialism of the trivial.
+      p
+        |  In terms of territory, the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  appears as the most powerful vector of the tyranny of servitude. Who can guess what fury any sign of nonsubmission might bring about in her? In this sense, a certain type of totalitarian social democracy suits 
+        =PPS 
+        |  marvelously.
+      p
+        |  The violence of the
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is in exact proportion to 
+        =PPP 
+        |  fragile vacuity.
+      p
+        |  It is through the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  that capitalism has managed to extend its hegemony to the totality of social life. 
+        =PP 
+        |  is the most rugged pawn of market domination in a war whose objective remains the total control of daily life and “production” time.
+      p
+        |  It is precisely because 
+        =PP 
+        |  represents the total acculturation of self, because 
+        =PP 
+        |  defines herself using the fixed terms of foreign judgment, that the
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  constitutes the most advanced carrier of the ethos of the Spectacle, and of its abstract behavioral norms.
+      p
+        |  “One would have to create a major educational project (perhaps on the model of the Chinese or Khmer Rouge), with labor camps where boys would learn, under the direction of competent women, the responsibilities and secrets of domestic life.”
+      p
+        |  The insignificance of the
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  certainly reflects a situation of minority and oppression, but at the same time 
+        =PP 
+        |  has an imperialist and triumphant quality. It is that the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is in combat for Empire, 
+        =PPP 
+        |  master.
+      p
+        |  Unlike the young girls of Babylon, who, according to Strabon, willingly gave their prostitution revenues to the temple, the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  unwittingly turns 
+        =PPP 
+        |  profits over to the Spectacle.
+      p
+        |  “Furthermore, it was here that the schoolgirl’s real pandemonium began: behind these letters there was a heap of confidential letters from judges, attorneys, public prosecutors, pharmacists, businessmen, urban and rural citizens, doctors and such, from those high and mighty who had always impressed me so! I stood there astonished. … Did these men, pretense notwithstanding, socialize with the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  ! ‘Unbelievable,’ I went on repeating, ‘unbelievable!’ Were they so oppressed by their Maturity that, unbeknownst to their wives and children, they had to send long letters to a modern schoolgirl? … These letters made me finally realize the extent of the schoolgirl’s power. Where wasn’t it present?” (Witold Gombrowicz, Ferdydurke)
+      p
+        |  The
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is a procedure of metaphysical sequestering, which is to say that one is never imprisoned by her, but always in her.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is a summons to every person to maintain the selfhood at the height of the images of the Spectacle.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is an instrument in service of a general politics of the extermination of beings capable of love. Identical in this to the totality of the alienated socius the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  hates sorrow because sorrow condemns 
+        =PPS 
+        |  just as it condemns this society.
+      p
+        |  THE 
+        span.uppercase= adjective
+        |  -
+        spab.uppercase= objectOfCritique
+        |  WORKS TO PROPAGATE A TERRORISM OF ENTERTAINMENT.
+      p
+        |  —How many cops does it take to make a 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  crack an infantile smile?
+      p
+        |  —Even more, EVEN MORE,
+      p
+        |  EVEN MORE …
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  ’s vocabulary is also that of Total Mobilization.
+      p
+        |  “Fidelity Pays.”
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is part of the new mores police, making sure that each person fulfills her/his function and sticks to it. The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  never enters into contact with a singular being, but rather with an ensemble of qualities objectivized into a role, a character, or a social situation to which one is required to conform no matter what the circumstance. Thus the person with whom 
+        =PP 
+        |  shares 
+        =PPP 
+        |  own little alienated daily life will always remain “this guy” or “that girl.”
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  covets commodities with an eye filled with envy, because 
+        =PP 
+        |  sees the model of herself in them, which is to say, the same thing that 
+        =PP 
+        |  is, only more perfect. What remains of 
+        =PPP 
+        |  humanity is not only what keeps 
+        =PPS 
+        |  in default of commodity perfection, it is also the cause of all 
+        =PPP 
+        |  suffering. It is this remaining humanity, therefore, that 
+        =PP 
+        |  must eradicate.
+      p
+        |  It is with unfeigned bitterness that the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  reproaches reality for failing to measure up to the Spectacle.
+      p
+        |  The ignorance with which the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  plays 
+        =PPP 
+        |  role as cornerstone of the present system of domination is part of the role.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is a pawn in the all-out war being waged by the dominant order for the eradication of all alterity. The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  declares it directly: 
+        =PP 
+        |  is “horrified by negativity.” When 
+        =PP 
+        |  says this, 
+        =PP 
+        |  is, like Spinoza’s stone, persuaded that it is 
+        =PP 
+        |  herself who is speaking.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  wears a mask, and, when 
+        =PP 
+        |  confesses to doing so, it is invariably to suggest that 
+        =PP 
+        |  also has a “true face” that 
+        =PP 
+        |  will not, or cannot, show. But this “true face” is another mask, a terrifying mask: the true face of domination. Indeed, as soon as the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  “lets the mask fall,” Empire speaks to you directly.
+      p
+        |  “And what if we eliminated guys from the planet? Why try to make anything new out of the old? Sick of dudes? Get rid of them! No point getting annoyed—historically, genetically, 
+        =antagonist
+        |  has had 
+        =APP 
+        |  time. He’s pushing toward the exit all by the 
+        =antagonist
+        |  .”
+      p
+        |  Every 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is 
+        =PPP 
+        |  own modest purification enterprise.
+      p
+        |  Taken together, 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  constitute the most redoubtable front that THEY have yet maneuvered against heterogeneity, against every velleity of desertion. In parallel, they mark, at every instant, the most advanced position of Biopower, its poisonous solicitude, and its cybernetic pacification of everything. In the culinary gaze of the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  , each thing and each being, organic and inorganic, appears as though it could become possessed, or at least consumed. Everything 
+        =PP 
+        |  sees, 
+        =PP 
+        |  sees and thus transforms into a commodity. It is in this sense that 
+        =PP 
+        |  constitutes an advanced position in the infinite offensive of the Spectacle.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  is the void that THEY maintain in order to hide the pregnancy of the void.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  doesn’t like war, 
+        =PP 
+        |  makes it.
+      p
+        |  THE 
+        span.uppercase= adjective
+        |  -
+        span.uppercase= objectOfCritique
+        |  IS THE ULTIMATE SLAVERY THROUGH WHICH EMPIRE HAS OBTAINED ITS SLAVES’ SILENCE.
+      p
+        |  It is not enough to know that the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  speaks the language of the Spectacle. It must be further noted that the Spectacle is all 
+        =PP 
+        |  can understand, and that 
+        =PP 
+        |  thus requires all who do not loathe it to speak it.
+      p
+        |  The semiocratic authorities, who require aesthetic assent to their world more and more heavily, flatter themselves that they are able to pass off whatever they like as “beautiful.” But this “beauty” is only what’s desirable under social control.
+      p
+        |  “SICK OF GUYS? GET A DOG! You’re what, 18, 20? You’re beginning your studies, which will be long and hard? Do you think this is the moment to slow down by looking desperately for affection from a boy who has nothing to give? Or worse! So you’re saddled with this companion who’s pretty undeveloped, not even nice and often not very clean …”
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  delivers conformity to all of the fleeting norms of the Spectacle, and also the example of such conformity. Like everything that has achieved symbolic hegemony, the 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  condemns as barbaric all physical violence directed toward 
+        =PPP 
+        |  ambition for the total pacification of society. 
+        =PP 
+        |  and the dominant power are obsessed with security.
+      p
+        |  The war-machine quality that’s so striking in every 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  comes from the indistinguishability between the way 
+        =PP 
+        |  conducts 
+        =PPP 
+        |  life and the way 
+        =PP 
+        |  wages 
+        =PPP 
+        |  war. But, on the one hand, her pneumatic void already announces 
+        =PPP 
+        |  future militarization. 
+        =PP 
+        |  no longer defends only 
+        =PPP 
+        |  private monopoly of desire but, in a general sense, the state of alienated public articulation of all desire.
+      p
+        |  It is not their “instinctive drives” that imprison men within the Spectacle—it is the laws of what is desirable that THEY have inscribed into their very flesh.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has declared war on GERMS.
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has declared war on CHANCE. 
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has declared war on PASSION. 
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has declared war on TIME. 
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has declared war on FAT. 
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has declared war on OBSCURITY. 
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has declared war on WORRY. 
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has declared war on SILENCE. 
+      p
+        |  The 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  has declared war on POLITICS.
+      p
+        |  And finally,
+        br
+        |  THE 
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  HAS DECLARED WAR ON WAR.

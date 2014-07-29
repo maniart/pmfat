@@ -141,8 +141,12 @@
 }
 /* STYLES */
 
+html,
 body {
-	padding-top: 180px;
+	height: 100%;
+}
+body {
+	//padding-top: 180px;
 }
 .main-nav {
 	background: white;
@@ -157,15 +161,16 @@ body {
 		height: 100px;
 		font-size: 1.2em;
 		font-weight: 300;
-		letter-spacing: -1px;
+		letter-spacing: 1px;
 		
 		li {
 			a {
 				color: rgb(180,180,180);
+				background: transparent;
 				.transition(.2s all ease-in);
 				&:hover {
-					color: white;
-					background-color: @color-pink
+					color: @color-pink;
+					
 				}
 			}
 		}
@@ -192,21 +197,109 @@ body {
 	}
 
 } // .main-nav
-.inputs {
-	font-size: 180%;
-	.form-group {
-		width: 100%;
-	}
-	input {
-		margin-left: 10px;
-		&[type="text"] {
-			border: none;
+.scroll-down {
+	position: absolute;
+	bottom: 50px;
+	left: 50%;
+	.transform(translateX(-50%));
+	a {
+
+		text-decoration: none;
+		.generate-text {
+			outline: none!important;
 			.box-shadow(none);
-			.border-radius(0);
-			border-bottom: 1px solid black;
+			.border-radius(0px);
+			border: none;
+			color: @color-pink;
+			.text {
+				margin-bottom: 20px;
+				display: block;
+			}
+			.glyphicon {
+				display: block;					
+				text-align: center;
+			}
 		}
 	}
-} // .inputs
-.call-to-action {
 
-} //.call-to-action
+}
+.container {
+	height: 100%;
+	min-height: 100%;
+	&.cover {
+		background: @color-pink;
+		color: white;
+		padding-top: 180px;
+		position: relative;
+		p {
+			font-size: 2em;
+		}
+		
+	}
+	&.generate {
+		background: @color-pink;
+		color: white;
+		padding-top: 180px;
+		.row {
+			height: 100%;
+		}
+		.inputs {
+			height: 100%;
+			.submit-btn {
+				position: absolute;
+				bottom: 40px;
+				left: 50%;
+				.transform(translateX(-50%));
+			}
+			form.user-input {
+				user: 100%;
+				position: relative;
+				height: 100%;
+				width: 100%;
+			}
+			font-size: 180%;
+			.form-group {
+				width: 100%;
+			}
+			select,
+			input {
+				margin: 0 0 15px 10px;
+				.box-shadow(none);
+				.border-radius(0);
+				border: none;
+
+			}
+			select {
+			}
+			input {
+				&[type="text"] {
+					color: white;
+					background: transparent;
+					border-bottom: 1px solid white;
+					&:focus {
+						background: rgba(255,255,255,.4);
+						.transition(.2s all ease-in);
+					}
+				}
+			}
+			.do-generate {
+				background: white;
+				.border-radius(0);
+				padding: 1em;
+				outline: none!important;
+				.box-shadow(none);
+				.border-radius(0px);
+				color: @color-pink;
+				border: none;
+				text-align: center;
+				width: 100%;
+				margin-top: 20px;
+			}
+		} // .inputs	
+	}
+
+	.call-to-action {
+
+	} //.call-to-action
+
+}

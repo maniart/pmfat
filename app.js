@@ -2,11 +2,12 @@ var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var archive = require('./routes/archive');
 var api = require('./routes/api');
 var about = require('./routes/about');
 
@@ -15,16 +16,16 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-app.use(favicon());
+console.log('dir is: ', __dirname);
+app.use(favicon({ maxAge: 0 }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded(  ));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/archive', archive);
 app.use('/api', api);
 app.use('/about', about);
 
@@ -60,6 +61,15 @@ app.use(function(err, req, res, next) {
     });
 });
 
+/* BEGIN MONGODB */
+mongoose.connect('mongodb://localhost/pmfat');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+    console.log('connected to mongodb');
+});
+
+/* END MONGODB */
 
 
 module.exports = app;
