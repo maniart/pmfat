@@ -3,9 +3,11 @@ var Schema = mongoose.Schema;
 
 
 var userInputSchema = Schema({
-    fileName : String,
-    pdfPath : String,
+	title : String,
+	pdfFileName : String,
+    thumbnailFileName : String,
     thumbPath : String,
+    pdfPath : String,
     firstName : String,
     lastName : String,
     objectOfCritique : String,

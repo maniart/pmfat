@@ -44,5 +44,14 @@ block content
               option he
               option it
           .form-group.submit-btn
-             button(type="submit" data-loading-text="Generating...").btn.btn-primary.btn-lg.do-generate Generate!
+             button(type="submit", data-loading-text="Generating...", data-toggle="modal", data-target=".wait-message").btn.btn-primary.btn-lg.do-generate Generate!
 
+.modal.fade.wait-message#myModal(tabindex="-1" , role="dialog" , aria-labelledby="myModalLabel" , aria-hidden="true")
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        h4.modal-title#myModalLabel One moment ...
+      
+      .modal-body
+        p.
+          Generating your Preliminary Materials.

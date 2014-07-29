@@ -1,4 +1,4 @@
-var pmfat = (function(w, d, $, _) {
+var pmfat = (function(w, d, $) {
 
 	var init,
 		attachListeners,
@@ -56,6 +56,6 @@ var pmfat = (function(w, d, $, _) {
 		init : init
 	};
 
-}(window, document, jQuery, _));
+}(window, document, jQuery));
 
 jQuery(document).ready(pmfat.init);

@@ -11,16 +11,18 @@ var pdfPath = path.join(__dirname, '../pdf/');
 var thumbnailPath = path.join(__dirname, '../pdf/thumbnails');
 
 /* BEGIN JADE */
-var compileJade;
+var compileJade,
+    compileCoverJade;
 /* END JADE */
 
 
 
-var title = 'Preliminary Materials For a Theory of a',
+var title = 'Preliminary Materials For a Theory of the ',
     baseFileName,
     pdfFileName,
     thumbnailFileName,
     fullPath,
+    entry,
     pronounLookupTable = {
         he : {
             subjective : 'him',
@@ -47,17 +49,32 @@ router.post('/', function(req, res) {
     
     title += req.body.adjective + '-' + req.body.objectOfCritique;
     // Generate the full file path
-    fullPath = path.join(saveToPath, fileName);
+    //fullPath = path.join(saveToPath, fileName);
 
+    //console.log('title: ', title, ' baseFileName: ', baseFileName, ' pdfFileName: ', pdfFileName, ' thumbnailFileName ', thumbnailFileName);
+    
+    
+    // console.log(_.extend(req.body, {
+    //         'title' : title,
+    //         'pdfFileName' : pdfFileName,
+    //         'thumbnailFileName' : thumbnailFileName,
+    //         'thumbnailPath' : thumbnailPath,
+    //         'pdfPath' : pdfPath   
+
+    //     })
+    // );
     // prepare the database entry by extending the request body object by two properties defined in the schema. 
-    var entry = new Entry(_.extend(req.body, {
-            title : title,
-            fileName : fileName,
-            pdfPath : pdfPath,
-            thumbPath : thumbPath  
+    //console.log('entry: ', bar);
+    entry = new Entry(_.extend(req.body, {
+            'title' : title,
+            'pdfFileName' : pdfFileName,
+            'thumbnailFileName' : thumbnailFileName,
+            'thumbnailPath' : thumbnailPath,
+            'pdfPath' : pdfPath   
+
         })
     );
-    
+    console.log('entry created ', entry);
     // save the entry
     entry.save(function(err, out) {
         
@@ -88,20 +105,43 @@ router.post('/', function(req, res) {
                     height: '9.8in', 
                 });
                 /*TODO: catch 500 */
+                console.log('saving to this path: ', path.join(pdfPath, pdfFileName));
+                page.render(path.join(pdfPath, pdfFileName), function(err, out) {
 
-                 page.render(path.join(pdfPath, pdfFileName), function() {
-                     // file is now written to disk
-                     console.log('done saving pdf file');
+                    // file is now written to disk
+                    console.log('done saving pdf file');
+                    //ph.exit();
                     
-                    ph.exit();
                 });
-                // page.render(path.join(thumbnailPath, thumbnailFileName), function () {
-                //     // body...
-                //     console.log('done saving thumbnail file');
-                //     ph.exit();
-                // });
+
                
             });
+
+            ph.createPage(function (page) {
+                compileCoverJade = jade.renderFile(path.join(__dirname, '../views/cover.jade'), {
+                    name : req.body.lastName,
+                    objectOfCritique : req.body.objectOfCritique,
+                    antagonist : req.body.antagonist,
+                    adjective : req.body.adjective,
+                });
+
+                page.setContent(compileCoverJade);
+                page.set('paperSize', {
+                    width: '6.2in', 
+                    height: '9.8in', 
+                });
+                /*TODO: catch 500 */
+                console.log('saving thumbnails to this path: ', path.join(thumbnailPath, thumbnailFileName));
+                page.render(path.join(thumbnailPath, thumbnailFileName), function(err, out) {
+
+                    // file is now written to disk
+                    console.log('done saving png file');
+                    ph.exit();
+                    
+                });
+                
+            });
+
         });
     /* END PHANTOM */
     }); 
