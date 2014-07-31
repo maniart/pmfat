@@ -71,6 +71,8 @@ db.once('open', function callback () {
     console.log('connected to mongodb');
 });
 
+
+
 /* END MONGODB */
     
 var server = app.listen(app.get('port'), function() {
