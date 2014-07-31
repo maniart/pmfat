@@ -48,22 +48,7 @@ router.post('/', function(req, res) {
     thumbnailFileName = baseFileName + '.png';
     
     title += req.body.adjective + '-' + req.body.objectOfCritique;
-    // Generate the full file path
-    //fullPath = path.join(saveToPath, fileName);
-
-    //console.log('title: ', title, ' baseFileName: ', baseFileName, ' pdfFileName: ', pdfFileName, ' thumbnailFileName ', thumbnailFileName);
     
-    
-    // console.log(_.extend(req.body, {
-    //         'title' : title,
-    //         'pdfFileName' : pdfFileName,
-    //         'thumbnailFileName' : thumbnailFileName,
-    //         'thumbnailPath' : thumbnailPath,
-    //         'pdfPath' : pdfPath   
-
-    //     })
-    // );
-    // prepare the database entry by extending the request body object by two properties defined in the schema. 
     entry = new Entry(_.extend(req.body, {
             
             'title' : title,
@@ -142,10 +127,9 @@ router.post('/', function(req, res) {
                 
             });
 
-            */
-
         });
-    /* END PHANTOM */
+        */
+        /* END PHANTOM */
     }); 
     
 });
