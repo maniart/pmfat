@@ -66,9 +66,9 @@ app.use(function(err, req, res, next) {
 
 /* BEGIN MONGODB */
 // prod
-mongoose.connect(MONGO_HQ_URL);
+//mongoose.connect(MONGO_HQ_URL);
 // dev
-//mongoose.connect(MONGO_LOCAL_URL);
+mongoose.connect(MONGO_LOCAL_URL);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
