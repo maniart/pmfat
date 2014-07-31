@@ -81,8 +81,9 @@ router.post('/', function(req, res) {
             return console.log('Error writing entry to DB');
         }
         console.log('Entry for :', req.body.firstName , ' has been added');
-    
+        
         /* BEGIN PHANTOM */
+        /*
         phantom.create(function (ph) {
             ph.createPage(function (page) {
                 compileJade = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
@@ -103,7 +104,6 @@ router.post('/', function(req, res) {
                     width: '6.2in', 
                     height: '9.8in', 
                 });
-                /*TODO: catch 500 */
                 console.log('saving to this path: ', path.join(pdfPath, pdfFileName));
                 page.render(path.join(pdfPath, pdfFileName), function(err, out) {
 
@@ -127,7 +127,6 @@ router.post('/', function(req, res) {
                     width: '6.2in', 
                     height: '9.8in', 
                 });
-                /*TODO: catch 500 */
                 console.log('saving thumbnails to this path: ', path.join(thumbnailPath, thumbnailFileName));
                 page.render(path.join(thumbnailPath, thumbnailFileName), function(err, out) {
 
@@ -143,7 +142,9 @@ router.post('/', function(req, res) {
             });
 
         });
+        */
     /* END PHANTOM */
+        res.send({redirect: '/archive'});   
     }); 
     
 });
