@@ -23,14 +23,14 @@ block content
             label(for="user-first-name").sr-only Author's Last Name:
             input(type="text", placeholder="", name="lastName", required).form-control#user-last-name
           .form-group
+            label(for="adjective") Choose your adjective:
+            input(type="text", placeholder="", name="adjective", required).form-control#adjective
+          .form-group
             label(for="object-of-critique") Choose your object of critique:
             input(type="text", placeholder="", name="objectOfCritique", required).form-control#object-of-critique
           .form-group
             label(for="antagonist") Choose your antagonist:
             input(type="text", placeholder="", name="antagonist", required).form-control#antagonist  
-          .form-group
-            label(for="adjective") Choose your adjective:
-            input(type="text", placeholder="", name="adjective", required).form-control#adjective
           .form-group
             label(for="protagonist-pronoun") Choose your desired pronoun for the object of critique:
             select(name="protagonistPronoun", required).form-control#protagonist-pronoun
@@ -55,3 +55,6 @@ block content
         .modal-body
           p.
             Generating your Preliminary Materials.
+          .modal-footer
+            button.btn.btn-default(type="button" , data-dismiss="modal") Edit
+            button.btn.btn-primary(type="button") Generate!

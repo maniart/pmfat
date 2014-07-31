@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var userInputSchema = Schema({
 	title : String,
+	createdAt: { type: Date, default: Date.now },
 	pdfFileName : String,
     thumbnailFileName : String,
     thumbPath : String,

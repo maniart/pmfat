@@ -1,11 +1,14 @@
 extends layout
 
 block content
-	.container.cover
+	.container.archive
 		.row 
 			each entry in entries
 				.col-md-3.col-xs-6
 					.thumbnail
-						.img(data-src="" , alt="")
-						.caption= entry.fileName	
+						.date= entry.createdAtPretty
+						img(data-src="#{entry}" , alt="")
+						h3= entry.title
+						
+
 					

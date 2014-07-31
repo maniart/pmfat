@@ -33,6 +33,7 @@ var pmfat = (function(w, d, $, _) {
 		    }
   		});
     };
+    
 	attachListeners = function() {
 		var formData;
 		$('#user-input').on('submit', function(event) {
@@ -40,6 +41,7 @@ var pmfat = (function(w, d, $, _) {
 			
 			formData = sanitizeFormData($(this).serializeArray()); // trim whitespace
 			modal.modal('show'); // show modal while PDF is being generated
+			
 			$.ajax({
 				type: "POST",
 				url: "/api",

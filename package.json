@@ -17,7 +17,8 @@
     "mongoose": "^3.8.13",
     "phantom": "^0.6.5",
     "randomstring": "^1.0.3",
-    "underscore": "^1.6.0"
+    "underscore": "^1.6.0",
+    "pretty-date": "^0.2.0"
   },
   "devDependencies": {
     "less": "^1.7.3",
