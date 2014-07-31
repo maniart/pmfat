@@ -6,9 +6,6 @@ var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var MONGO_HQ_URL='mongodb://mani:savegaza@kahana.mongohq.com:10047/app27662726';
-var MONGO_LOCAL_URL='mongodb://localhost/pmfat';
-
 var routes = require('./routes/index');
 var archive = require('./routes/archive');
 var api = require('./routes/api');
@@ -65,11 +62,7 @@ app.use(function(err, req, res, next) {
 });
 
 /* BEGIN MONGODB */
-// prod
-//mongoose.connect(MONGO_HQ_URL);
-// dev
-mongoose.connect(MONGO_LOCAL_URL);
-
+mongoose.connect('mongodb://localhost/pmfat');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
