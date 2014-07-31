@@ -36,6 +36,8 @@ app.use(function(req, res, next) {
     next(err);
 });
 
+app.set('port', process.env.PORT || 3000);
+
 /// error handlers
 
 // development error handler
@@ -71,5 +73,9 @@ db.once('open', function callback () {
 
 /* END MONGODB */
     
+var server = app.listen(app.get('port'), function() {
+  console.log('******** Magic happens.');
+});
+
 
 module.exports = app;

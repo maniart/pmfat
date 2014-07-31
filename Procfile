@@ -1,2 +1,2 @@
-web: DEBUG=pmfat ./bin/www
+web: node app.js
 
