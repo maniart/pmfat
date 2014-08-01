@@ -2,13 +2,30 @@ var express = require('express');
 var phantom = require('phantom');
 var path = require('path');
 var jade = require('jade');
+var childProcess = require('child_process');
+var s3 = require('s3');
+var fs = require('fs');
+var guid = require('guid');
 var random = require('randomstring');
 var router = express.Router();
 var _ = require('underscore');
 var Entry = require('./entry.js');
-
+var crypto = require('crypto');
 var pdfPath = path.join(__dirname, '../pdf/');
 var thumbnailPath = path.join(__dirname, '../pdf/thumbnails');
+
+var AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
+var AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+var S3_BUCKET_NAME = process.env.S3_BUCKET_NAME;
+
+
+/* BEGIN S3 */
+var s3Client = s3.createClient({
+    key: AWS_ACCESS_KEY_ID,
+    secret: AWS_SECRET_ACCESS_KEY,
+    bucket: S3_BUCKET_NAME
+});
+/* END S3 */
 
 /* BEGIN JADE */
 var compileJade,
@@ -83,7 +100,7 @@ router.post('/', function(req, res) {
         console.log('Entry for :', req.body.firstName , ' has been added');
         
         /* BEGIN PHANTOM */
-        /*
+        
         phantom.create(function (ph) {
             ph.createPage(function (page) {
                 compileJade = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
@@ -107,13 +124,28 @@ router.post('/', function(req, res) {
                 console.log('saving to this path: ', path.join(pdfPath, pdfFileName));
                 page.render(path.join(pdfPath, pdfFileName), function(err, out) {
 
+
+                    var uploader = s3Client.upload((path.join(pdfPath, pdfFileName), '/' + pdfFileName);
+                    uploader.on('error', function(err) {
+                        return res.json(500, { 'error': 'Problem uploading to S3.' });
+                    });
+                    uploader.on('end', function() {
+                        fs.unlink((path.join(pdfPath, pdfFileName), function(err){
+                        var s3Url = 'https://' + process.env.AWS_BUCKET_NAME + '.s3.amazonaws.com/' + filename;
+                            //return res.json(200, { 'url': s3Url });
+                            res.send({redirect: '/archive'});    
+                    
+                            ph.exit();
+                        });
+                    });
+
                     console.log('done saving pdf file');
                     
                 });
 
                
             });
-
+            /*
             ph.createPage(function (page) {
                 compileCoverJade = jade.renderFile(path.join(__dirname, '../views/cover.jade'), {
                     name : req.body.lastName,
@@ -133,6 +165,8 @@ router.post('/', function(req, res) {
                     // file is now written to disk
                     console.log('done saving png file');
                     
+                    
+
                     res.send({redirect: '/archive'});    
                     
                     ph.exit();
@@ -140,9 +174,10 @@ router.post('/', function(req, res) {
                 });
                 
             });
+            */
 
         });
-        */
+            
     /* END PHANTOM */
         res.send({redirect: '/archive'});   
     }); 
