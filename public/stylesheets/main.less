@@ -227,6 +227,15 @@ body {
 	height: 100%;
 	min-height: 100%;
 	&.archive {
+		
+		.row {
+			display: table;
+		}
+		[class*="col-"] {
+		    float: none;
+		    display: table-cell;
+		    vertical-align: top;
+		}
 		padding-top: 180px;
 		color: black;
 	}
@@ -308,4 +317,5 @@ body {
 	.date {
 		color: black;
 	}
+
 }
