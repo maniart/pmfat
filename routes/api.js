@@ -124,28 +124,13 @@ router.post('/', function(req, res) {
                 console.log('saving to this path: ', path.join(pdfPath, pdfFileName));
                 page.render(path.join(pdfPath, pdfFileName), function(err, out) {
 
-
-                    var uploader = s3Client.upload((path.join(pdfPath, pdfFileName), '/' + pdfFileName);
-                    uploader.on('error', function(err) {
-                        return res.json(500, { 'error': 'Problem uploading to S3.' });
-                    });
-                    uploader.on('end', function() {
-                        fs.unlink((path.join(pdfPath, pdfFileName), function(err){
-                        var s3Url = 'https://' + process.env.AWS_BUCKET_NAME + '.s3.amazonaws.com/' + filename;
-                            //return res.json(200, { 'url': s3Url });
-                            res.send({redirect: '/archive'});    
-                    
-                            ph.exit();
-                        });
-                    });
-
                     console.log('done saving pdf file');
                     
                 });
 
                
             });
-            /*
+
             ph.createPage(function (page) {
                 compileCoverJade = jade.renderFile(path.join(__dirname, '../views/cover.jade'), {
                     name : req.body.lastName,
@@ -165,8 +150,6 @@ router.post('/', function(req, res) {
                     // file is now written to disk
                     console.log('done saving png file');
                     
-                    
-
                     res.send({redirect: '/archive'});    
                     
                     ph.exit();
@@ -174,10 +157,9 @@ router.post('/', function(req, res) {
                 });
                 
             });
-            */
 
         });
-            
+        
     /* END PHANTOM */
         res.send({redirect: '/archive'});   
     }); 
