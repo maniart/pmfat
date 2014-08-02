@@ -229,13 +229,18 @@ body {
 	&.archive {
 		
 		.row {
-			display: table;
+			height: 250px;
+			.transition(all .3 ease);
+			&:hover {
+				background: @color-pink;
+				color: white;
+			}
+			.thumbnail {
+				.border-radius(0px);
+			}
 		}
-		[class*="col-"] {
-		    float: none;
-		    display: table-cell;
-		    vertical-align: top;
-		}
+
+		
 		padding-top: 180px;
 		color: black;
 	}
