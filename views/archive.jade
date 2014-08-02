@@ -7,8 +7,9 @@ block content
 				.col-md-3.col-xs-6
 					.thumbnail
 						.date= entry.createdAtPretty
+						.author= entry.lastName
 						img(data-src="#{entry}" , alt="")
-						h3= entry.title
+						h3.title= entry.title
 						
 
 					
