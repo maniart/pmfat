@@ -8,7 +8,7 @@ var pmfat = (function(w, d, $, _) {
 
 	sanitizeFormData = function(serializedFormData) {
 		if(!serializedFormData instanceof Array) {
-			throw new Error('Serialized Form Data needs to be an array');
+			throw new Error('Serialized Form Data needs to be an array.');
 		}
 		_.each(serializedFormData, function(input) {
 			input.value = $.trim(input.value);

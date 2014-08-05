@@ -3,28 +3,29 @@ var phantom = require('phantom');
 var path = require('path');
 var jade = require('jade');
 var childProcess = require('child_process');
-var s3 = require('s3');
 var fs = require('fs');
-var guid = require('guid');
+//var guid = require('guid');
 var random = require('randomstring');
 var router = express.Router();
 var _ = require('underscore');
 var Entry = require('./entry.js');
-var crypto = require('crypto');
+//var crypto = require('crypto');
 var pdfPath = path.join(__dirname, '../pdf/');
 var thumbnailPath = path.join(__dirname, '../pdf/thumbnails');
 
-var AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-var AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
-var S3_BUCKET_NAME = process.env.S3_BUCKET_NAME;
+//var AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
+//var AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+//var S3_BUCKET_NAME = process.env.S3_BUCKET_NAME;
 
 
 /* BEGIN S3 */
+/*
 var s3Client = s3.createClient({
     key: AWS_ACCESS_KEY_ID,
     secret: AWS_SECRET_ACCESS_KEY,
     bucket: S3_BUCKET_NAME
 });
+*/
 /* END S3 */
 
 /* BEGIN JADE */
@@ -124,9 +125,8 @@ router.post('/', function(req, res) {
                 console.log('saving to this path: ', path.join(pdfPath, pdfFileName));
                 page.render(path.join(pdfPath, pdfFileName), function(err, out) {
 
-                    
-                    
                     console.log('done saving pdf file');
+                    res.send({redirect: '/archive'});
                     
                 });
 
@@ -151,9 +151,6 @@ router.post('/', function(req, res) {
 
                     // file is now written to disk
                     console.log('done saving png file');
-                    
-                    res.send({redirect: '/archive'});    
-                    
                     ph.exit();
                     
                 });

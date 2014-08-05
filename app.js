@@ -65,8 +65,8 @@ app.use(function(err, req, res, next) {
 });
 
 /* BEGIN MONGODB */
-//mongoose.connect('mongodb://localhost/pmfat');
-mongoose.connect(MONGOHQ_URL);
+mongoose.connect('mongodb://localhost/pmfat');
+//mongoose.connect(MONGOHQ_URL);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
@@ -77,9 +77,10 @@ db.once('open', function callback () {
 
 /* END MONGODB */
     
-var server = app.listen(app.get('port'), function() {
+
+/*var server = app.listen(app.get('port'), function() {
   console.log('******** Magic happens.');
-});
+});*/
 
 
 module.exports = app;
