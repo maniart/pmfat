@@ -1,6 +1,9 @@
 extends layout
 
 block content
+  .under-construction
+    p
+      | We are going live Monday August 11 2014. Stop by!
   .container.cover
     .row 
       .col-md-8.col-md-offset-2
@@ -46,7 +49,22 @@ block content
           .form-group.submit-btn
              button(type="submit", data-loading-text="Generating...", data-toggle="modal", data-target=".wait-message").btn.btn-primary.btn-lg.do-generate Generate!
 
-  .modal.fade.wait-message#waitModal(tabindex="-1" , role="dialog" , aria-labelledby="myModalLabel" , aria-hidden="true")
+  .modal.fade.confirm-message#confirm-modal(tabindex="-1" , role="dialog" , aria-labelledby="confirmModal" , aria-hidden="true")
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          h4.modal-title#confirmModalTitle Please Confrim
+        
+        .modal-body
+          p.name
+            | name
+          p.theory-title
+            | theory title
+          .modal-footer
+            button.btn.btn-default#edit(type="button" , data-dismiss="modal") Edit
+            button.btn.btn-primary#generate(type="button") Generate!
+
+  .modal.fade.wait-message#wait-modal(tabindex="-1" , role="dialog" , aria-labelledby="waitModal" , aria-hidden="true")
     .modal-dialog.modal-sm
       .modal-content
         .modal-header
@@ -55,6 +73,4 @@ block content
         .modal-body
           p.
             Generating your Preliminary Materials.
-          .modal-footer
-            button.btn.btn-default(type="button" , data-dismiss="modal") Edit
-            button.btn.btn-primary(type="button") Generate!
+          

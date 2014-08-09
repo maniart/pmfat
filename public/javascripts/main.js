@@ -4,7 +4,12 @@ var pmfat = (function(w, d, $, _) {
 		attachListeners,
 		initAnchorScroll,
 		sanitizeFormData,
-		modal;
+		$form,
+		modals;
+
+	$form = $('form#user-input');
+
+	modals = {};
 
 	sanitizeFormData = function(serializedFormData) {
 		if(!serializedFormData instanceof Array) {
@@ -36,32 +41,60 @@ var pmfat = (function(w, d, $, _) {
     
 	attachListeners = function() {
 		var formData;
+		/*
 		$('#user-input').on('submit', function(event) {
 			event.preventDefault();
 			
 			formData = sanitizeFormData($(this).serializeArray()); // trim whitespace
 			modal.modal('show'); // show modal while PDF is being generated
 			
-			$.ajax({
-				type: "POST",
-				url: "/api",
-			  	data: formData
-			})
-			.success(function( data, textStatus, jqXHR ) {
-				console.log("Success Received: " , data);
-				if(typeof data.redirect === 'string') {
-					window.location = data.redirect;
-				}
-			})
-			.done(function( data, textStatus, jqXHR ) {
-			    console.log( "Data Saved: " , data );
-		  	});
+			
 			
 		});
+		*/
+		$('#user-input .submit-btn').on('click', function(event) {
+			event.preventDefault();
+			
+			formData = sanitizeFormData($(this).serializeArray()); // trim whitespace
+			
+			//modal.modal('show'); // show modal while PDF is being generated
+			$('#confirm-modal').modal({
+				show : false,
+				keyboard : false,
+				backdrop: 'static'
+			})
+			.one('click', '#generate', function() {
+				$.ajax({
+					type: "POST",
+					url: "/api",
+				  	data: formData
+				})
+				.success(function( data, textStatus, jqXHR ) {
+					console.log("Success Received: " , data);
+					if(typeof data.redirect === 'string') {
+						window.location = data.redirect;
+					}
+				})
+				.done(function( data, textStatus, jqXHR ) {
+				    console.log( "Data Saved: " , data );
+			  	});	
+			});
+
+			
+			
+		});
+
 	};
 
 	init = function() {
-		modal = $('#waitModal').modal({
+		/*
+		modals.confirm = $('#confirm-modal').modal({
+			show : false,
+			keyboard : false,
+			backdrop: 'static'
+		});
+		*/
+		modals.wait = $('#wait-modal').modal({
 			show : false,
 			keyboard : false,
 			backdrop: 'static'
