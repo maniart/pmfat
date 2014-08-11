@@ -91,7 +91,8 @@ var pmfat = (function(w, d, $, _) {
 
 	attachListeners = function() {
 		
-		var formData;
+		var formData = {};
+
 		$('#user-input .submit-btn').on('click', function(event) {
 
 			event.preventDefault();

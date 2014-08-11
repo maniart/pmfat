@@ -59,28 +59,22 @@ var title = 'Preliminary Materials For a Theory of the ',
 /* BEGIN CRUD */
 router.post('/', function(req, res) {
     //console.log('API is hit with: ', req.body, ' type is: ', typeof req.body);
-
+    //console.log('req is', req.body);
     // Generate the file name based on user input and add a random string to it.
-    baseFileName = req.body.lastName + '-' + req.body.firstName + '-preliminatyMaterialsForTheTheoryOf-' + req.body.objectOfCritique + '-' + random.generate(5);
+    baseFileName = req.body.lastName + '-' + req.body.firstName + '-preliminatyMaterialsForTheTheoryOf-' + req.body.adjective + '-' + req.body.objectOfCritique + '_' + random.generate(5);
     pdfFileName = baseFileName + '.pdf';
     thumbnailFileName = baseFileName + '.png';
     
     title += req.body.adjective + '-' + req.body.objectOfCritique;
-    // Generate the full file path
-    //fullPath = path.join(saveToPath, fileName);
+    console.log('************* right before save: ', {
+            
+            'title' : title,
+            'pdfFileName' : pdfFileName,
+            'thumbnailFileName' : thumbnailFileName,
+            'thumbnailPath' : thumbnailPath,
+            'pdfPath' : pdfPath   
 
-    //console.log('title: ', title, ' baseFileName: ', baseFileName, ' pdfFileName: ', pdfFileName, ' thumbnailFileName ', thumbnailFileName);
-    
-    
-    // console.log(_.extend(req.body, {
-    //         'title' : title,
-    //         'pdfFileName' : pdfFileName,
-    //         'thumbnailFileName' : thumbnailFileName,
-    //         'thumbnailPath' : thumbnailPath,
-    //         'pdfPath' : pdfPath   
-
-    //     })
-    // );
+        });
     // prepare the database entry by extending the request body object by two properties defined in the schema. 
     entry = new Entry(_.extend(req.body, {
             
@@ -92,6 +86,9 @@ router.post('/', function(req, res) {
 
         })
     );
+
+    console.log('_____________________________ entry is: ', entry);
+
     // save the entry
     entry.save(function(err, out) {
         
