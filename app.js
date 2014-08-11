@@ -70,17 +70,8 @@ mongoose.connect('mongodb://localhost/pmfat');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
-    console.log('connected to mongodb');
+    console.log('connected to mongodb', ' port is: ', app.get('port'));
 });
-
-
-
-/* END MONGODB */
-    
-
-/*var server = app.listen(app.get('port'), function() {
-  console.log('******** Magic happens.');
-});*/
 
 
 module.exports = app;
