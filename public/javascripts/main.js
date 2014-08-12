@@ -91,6 +91,11 @@ var pmfat = (function(w, d, $, _) {
 
 	attachListeners = function() {
 		
+		// focus on the form as soon as user scrolls down
+		$('.generate-text').on('click', function(ev){
+			$('#user-input input').eq(0).focus();
+		});
+
 		var formData = {};
 
 		$('#user-input .submit-btn').on('click', function(event) {
@@ -104,7 +109,6 @@ var pmfat = (function(w, d, $, _) {
 				populateConfirmModal(function() {
 					modals.confirm.modal('show')
 					.one('click', '#generate', function() {
-						debugger;
 						$.ajax({
 							type: "POST",
 							url: "/api",

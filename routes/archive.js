@@ -14,7 +14,7 @@ addPrettyDates = function(entries) {
 			throw new Error('input needs to be of type "Date"');	
 		}
 		entry.createdAtPretty = prettyDate.format(entry.createdAt);
-		console.log(entry.createdAtPretty);
+		//console.log(entry.createdAtPretty);
 	});
 	return entries;
 };
@@ -27,7 +27,7 @@ router.get('/', function(req, res) {
 			throw error;
 		}
 		//console.log('Entries found! : ', entries, ' type is: ', typeof entries);
-		console.log('entries are : ', entries);
+		//console.log('entries are : ', entries);
 		res.render('archive', { entries : addPrettyDates(entries)});
 	});
   	  
