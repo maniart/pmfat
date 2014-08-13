@@ -142,6 +142,11 @@ var pmfat = (function(w, d, $, _) {
 
 	init = function() {
 		
+		// dev
+		if(w.location.hash === '#dev') {
+			$('.under-construction').fadeOut(300);
+		}
+
 		modals.incomplete = $('#form-incomplete').modal({
 			show : false,
 			keyboard : true,
