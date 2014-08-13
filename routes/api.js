@@ -84,10 +84,7 @@ router.post('/', function(req, res) {
 
     // save the entry
     entry.save(function(err, out) {
-        
-        
-        
-
+                
         if(err) {
             return console.log('Error writing entry to DB');
         }
