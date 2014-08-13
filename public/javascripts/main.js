@@ -48,6 +48,11 @@ var pmfat = (function(w, d, $, _) {
 			namespace: '.panelSnap',
 			directionThreshold: 30,
 			slideSpeed: 200,
+			onSnap : function(element) {
+				if($(element).hasClass('generate')) {
+					$('#user-input input').eq(0).focus();
+				}
+			},
 			keyboardNavigation: {
 				enabled: true,
 				nextPanelKey: 40,
@@ -92,9 +97,9 @@ var pmfat = (function(w, d, $, _) {
 	attachListeners = function() {
 		
 		// focus on the form as soon as user scrolls down
-		$('.generate-text').on('click', function(ev){
-			$('#user-input input').eq(0).focus();
-		});
+		//$('.generate-text').on('click', function(ev){
+		//	$('#user-input input').eq(0).focus();
+		//});
 
 		var formData = {};
 
