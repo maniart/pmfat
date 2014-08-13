@@ -49,6 +49,7 @@ var pmfat = (function(w, d, $, _) {
 			directionThreshold: 30,
 			slideSpeed: 200,
 			onSnap : function(element) {
+				debugger;
 				if($(element).hasClass('generate')) {
 					$('#user-input input').eq(0).focus();
 				}
