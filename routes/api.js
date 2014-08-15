@@ -10,8 +10,8 @@ var router = express.Router();
 var _ = require('underscore');
 var Entry = require('./entry.js');
 //var crypto = require('crypto');
-var pdfPath = path.join(__dirname, '../pdf/');
-var thumbnailPath = path.join(__dirname, '../pdf/thumbnails/');
+var pdfPath = path.join(__dirname, '');
+var thumbnailPath = path.join(__dirname, '');
 
 /* BEGIN JADE */
 var compileJade,
