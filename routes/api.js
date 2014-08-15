@@ -10,23 +10,8 @@ var router = express.Router();
 var _ = require('underscore');
 var Entry = require('./entry.js');
 //var crypto = require('crypto');
-var pdfPath = path.join(__dirname, '../pdf/');
-var thumbnailPath = path.join(__dirname, '../pdf/thumbnails');
-
-//var AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-//var AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
-//var S3_BUCKET_NAME = process.env.S3_BUCKET_NAME;
-
-
-/* BEGIN S3 */
-/*
-var s3Client = s3.createClient({
-    key: AWS_ACCESS_KEY_ID,
-    secret: AWS_SECRET_ACCESS_KEY,
-    bucket: S3_BUCKET_NAME
-});
-*/
-/* END S3 */
+var pdfPath = path.join(__dirname, '../../public_html/pdf/');
+var thumbnailPath = path.join(__dirname, '../../public_html/thumbnails');
 
 /* BEGIN JADE */
 var compileJade,
