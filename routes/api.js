@@ -11,7 +11,7 @@ var _ = require('underscore');
 var Entry = require('./entry.js');
 //var crypto = require('crypto');
 var pdfPath = path.join(__dirname, '../../public_html/pdf/');
-var thumbnailPath = path.join(__dirname, '../../public_html/thumbnails');
+var thumbnailPath = path.join(__dirname, '../../public_html/thumbnails/');
 
 /* BEGIN JADE */
 var compileJade,
