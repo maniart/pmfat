@@ -28,7 +28,10 @@ router.get('/', function(req, res) {
 		}
 		//console.log('Entries found! : ', entries, ' type is: ', typeof entries);
 		//console.log('entries are : ', entries);
-		res.render('archive', { entries : addPrettyDates(entries)});
+		res.render('archive', { 
+			bodyClass : 'archive',
+			entries : addPrettyDates(entries)
+		});
 	});
   	  
 });

@@ -7,7 +7,8 @@ var pmfat = (function(w, d, $, _) {
 		sanitizeFormData,
 		modals,
 		isFormComplete,
-		populateConfirmModal;
+		populateConfirmModal,
+		capitalizeFirstLetter;
 
 	modals = {};
 
@@ -16,11 +17,33 @@ var pmfat = (function(w, d, $, _) {
 		if(!serializedFormData instanceof Array) {
 			throw new Error('Serialized Form Data needs to be an array.');
 		}
+		
 		_.each(serializedFormData, function(input) {
 			input.value = $.trim(input.value);
+			
+			if(input.name === 'adjective' || input.name === 'objectOfCritique') {
+				try {
+					input.value = capitalizeFirstLetter(input.value);
+				} catch(e) {
+					console.log(e);
+				}
+
+			}
 		});
+		
 		return serializedFormData;
+	
 	};
+
+	capitalizeFirstLetter = function(string) {
+    	
+    	if(typeof string !== 'string') {
+    		throw new TypeError('Input should be a string');
+    		return;
+    	}
+
+    	return string.charAt(0).toUpperCase() + string.slice(1);
+	}
 
 	initAnchorScroll = function() {
     	
@@ -41,21 +64,36 @@ var pmfat = (function(w, d, $, _) {
     
     };
     
-    initSnapScroll = function() {
+    initSnapScroll = function(pageTitles) {
 
-    	$('body').panelSnap({
-			panelSelector: '.container',
-			namespace: '.panelSnap',
-			directionThreshold: 30,
-			slideSpeed: 200,
-			keyboardNavigation: {
-				enabled: true,
-				nextPanelKey: 40,
-				previousPanelKey: 38,
-				wrapAround: true
-			}
-		});	
-   
+    	if(!pageTitles instanceof Array) {
+    		throw new TypeError('pageTitles needs to be an array');
+    		return;
+    	}
+    	
+    	var	$body,
+    		currentPageTitle;
+
+    	$body = $('body');
+    	currentPageTitle = $body.data('pagetitle');
+    	
+    	if(undefined === currentPageTitle) { return ; }
+
+    	if(pageTitles.indexOf(currentPageTitle) > -1) {
+    		$body.panelSnap({
+				panelSelector: '.container',
+				namespace: '.panelSnap',
+				directionThreshold: 30,
+				slideSpeed: 200,
+				keyboardNavigation: {
+					enabled: true,
+					nextPanelKey: 40,
+					previousPanelKey: 38,
+					wrapAround: true
+				}
+			});	
+    	}
+    	
     };
 
 
@@ -69,7 +107,7 @@ var pmfat = (function(w, d, $, _) {
     		
     		
     	});
-    	return nullFound === true ? false : true;
+    	return !nullFound;
     	
     };
 
@@ -79,7 +117,7 @@ var pmfat = (function(w, d, $, _) {
     		title;
 
     	name = $.trim($('#user-last-name').val());
-    	title = $.trim($('#adjective').val()) + '-' + $.trim($('#object-of-critique').val());
+    	title = capitalizeFirstLetter($.trim($('#adjective').val())) + '-' + capitalizeFirstLetter($.trim($('#object-of-critique').val()));
 
     	$('.confirm-message .name .content').text(name);
     	$('.confirm-message .theory-title .content').text('Preliminary Materials for a Theory of the ' + title);
@@ -106,7 +144,11 @@ var pmfat = (function(w, d, $, _) {
 			
 			if(isFormComplete()) {
 				
-				formData = sanitizeFormData($('#user-input').serializeArray()); // trim whitespace
+				try {
+					formData = sanitizeFormData($('#user-input').serializeArray()); // trim whitespace
+				} catch(e) {
+					console.log(e);
+				}
 				
 				populateConfirmModal(function() {
 					modals.confirm.modal('show')
@@ -168,7 +210,7 @@ var pmfat = (function(w, d, $, _) {
 
 		attachListeners();
 		initAnchorScroll();
-		initSnapScroll();
+		initSnapScroll(['index']);
 		
 		console.log('Made in Industry City - \nLovely Sunset Park, Brooklyn.');
 	

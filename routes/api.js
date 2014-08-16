@@ -59,13 +59,14 @@ router.post('/', function(req, res) {
             'title' : title,
             'pdfFileName' : pdfFileName,
             'thumbnailFileName' : thumbnailFileName,
-            'thumbnailPath' : thumbnailPath,
-            'pdfPath' : pdfPath   
+            'thumbnailPath' : thumbnailPath + thumbnailFileName,
+            'pdfPath' : pdfPath + pdfFileName   
 
         })
     );
 
 
+    /*
 
     // save the entry
     entry.save(function(err, out) {
@@ -75,7 +76,7 @@ router.post('/', function(req, res) {
         }
         //console.log('Entry for :', req.body.firstName , ' has been added');
         
-        /* BEGIN PHANTOM */
+        // BEGIN PHANTOM 
         
         phantom.create(function (ph) {
             ph.createPage(function (page) {
@@ -134,10 +135,12 @@ router.post('/', function(req, res) {
 
         });
         
-    /* END PHANTOM */
+    // END PHANTOM
         res.send({redirect: '/archive'});
         res.end();   
     }); 
+
+    */
     
 });
 
