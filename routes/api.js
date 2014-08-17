@@ -64,9 +64,9 @@ router.post('/', function(req, res) {
 
         })
     );
+    console.log('entry is: ', entry);
 
-
-    /*
+    
 
     // save the entry
     entry.save(function(err, out) {
@@ -140,7 +140,7 @@ router.post('/', function(req, res) {
         res.end();   
     }); 
 
-    */
+    
     
 });
 

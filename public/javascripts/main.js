@@ -20,8 +20,8 @@ var pmfat = (function(w, d, $, _) {
 		
 		_.each(serializedFormData, function(input) {
 			input.value = $.trim(input.value);
-			
-			if(input.name === 'adjective' || input.name === 'objectOfCritique') {
+
+			if(!(input.name === 'protagonistPronoun' || input.name === 'antagonistPronoun')) {
 				try {
 					input.value = capitalizeFirstLetter(input.value);
 				} catch(e) {
@@ -29,6 +29,7 @@ var pmfat = (function(w, d, $, _) {
 				}
 
 			}
+			console.log(input);
 		});
 		
 		return serializedFormData;
@@ -149,7 +150,7 @@ var pmfat = (function(w, d, $, _) {
 				} catch(e) {
 					console.log(e);
 				}
-				
+
 				populateConfirmModal(function() {
 					modals.confirm.modal('show')
 					.one('click', '#generate', function() {
@@ -219,8 +220,9 @@ var pmfat = (function(w, d, $, _) {
 
 
 	return {
-		init : init,
-		modals : modals
+
+		init : init
+	
 	};
 
 }(window, document, jQuery, _));

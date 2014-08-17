@@ -7,7 +7,7 @@ var userInputSchema = Schema({
 	createdAt: { type: Date, default: Date.now },
 	pdfFileName : String,
     thumbnailFileName : String,
-    thumbPath : String,
+    thumbnailPath : String,
     pdfPath : String,
     firstName : String,
     lastName : String,
