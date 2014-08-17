@@ -128,9 +128,6 @@ router.post('/', function(req, res) {
                     console.log('done saving png file');
                     ph.exit();
                     
-                    res.send({redirect: '/archive'});
-                    res.end();
-                
                 });
                 
             });
@@ -139,7 +136,8 @@ router.post('/', function(req, res) {
         
     // END PHANTOM
     
-           
+        res.send({redirect: '/archive'});
+        res.end();   
     }); 
 
  
