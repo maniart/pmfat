@@ -117,7 +117,7 @@ var pmfat = (function(w, d, $, _) {
     	var name,
     		title;
 
-    	name = $.trim($('#user-last-name').val());
+    	name = capitalizeFirstLetter($.trim($('#user-last-name').val()));
     	title = capitalizeFirstLetter($.trim($('#adjective').val())) + '-' + capitalizeFirstLetter($.trim($('#object-of-critique').val()));
 
     	$('.confirm-message .name .content').text(name);

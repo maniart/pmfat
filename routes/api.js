@@ -2,16 +2,13 @@ var express = require('express');
 var phantom = require('phantom');
 var path = require('path');
 var jade = require('jade');
-var childProcess = require('child_process');
 var fs = require('fs');
-//var guid = require('guid');
 var random = require('randomstring');
 var router = express.Router();
 var _ = require('underscore');
 var Entry = require('./entry.js');
-//var crypto = require('crypto');
-var pdfPath = '/pdf/';
-var thumbnailPath = '/pdf/thumbnails/';
+var pdfPath = path.join('','/pdf/');
+var thumbnailPath = path.join('','/pdf/thumbnails/');
 
 /* BEGIN JADE */
 var compileJade,
