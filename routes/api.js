@@ -102,7 +102,6 @@ router.post('/', function(req, res) {
                 page.render(path.join(pdfPath, pdfFileName), function(err, out) {
 
                     console.log('done saving pdf file');
-                    res.send({redirect: '/archive'});
                     
                 });
 
@@ -129,6 +128,9 @@ router.post('/', function(req, res) {
                     console.log('done saving png file');
                     ph.exit();
                     
+                    res.send({redirect: '/archive'});
+                    res.end();
+                
                 });
                 
             });
@@ -137,8 +139,7 @@ router.post('/', function(req, res) {
         
     // END PHANTOM
     
-        res.send({redirect: '/archive'});
-        res.end();   
+           
     }); 
 
  
