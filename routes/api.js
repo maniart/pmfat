@@ -10,8 +10,8 @@ var router = express.Router();
 var _ = require('underscore');
 var Entry = require('./entry.js');
 //var crypto = require('crypto');
-var pdfPath = path.join(__dirname, '../../public_html/pdf/');
-var thumbnailPath = path.join(__dirname, '../../public_html/pdf/thumbnails/');
+var pdfPath = '/pdf/';
+var thumbnailPath = '/pdf/thumbnails/';
 
 /* BEGIN JADE */
 var compileJade,
@@ -66,7 +66,7 @@ router.post('/', function(req, res) {
     );
     console.log('entry is: ', entry);
 
-    
+
 
     // save the entry
     entry.save(function(err, out) {
@@ -77,7 +77,7 @@ router.post('/', function(req, res) {
         //console.log('Entry for :', req.body.firstName , ' has been added');
         
         // BEGIN PHANTOM 
-        
+              
         phantom.create(function (ph) {
             ph.createPage(function (page) {
                 compileJade = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
@@ -135,12 +135,13 @@ router.post('/', function(req, res) {
 
         });
         
-        // END PHANTOM
+    // END PHANTOM
+    
         res.send({redirect: '/archive'});
         res.end();   
     }); 
 
-    
+ 
     
 });
 

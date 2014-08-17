@@ -148,6 +148,10 @@ body {
 body {
 	//padding-top: 180px;
 }
+.hidden-invisible {
+	display: none;
+	visibility: hidde;
+}
 .main-nav {
 	background: white;
 	//border-bottom: 1px solid black;
@@ -230,21 +234,19 @@ body {
 		.row {
 			
 			.thumbnail {
+				border: none;
 				.border-radius(0px);
-				height: 250px;
+				min-height: 250px;
+				height: auto;
 				.transition(all .3 ease);
+				img {
+					margin-top: 20px;
+					border: none;
+				}
 				&:hover {
-					background: @color-pink;
+					background: rgba(240,240,240,1);
 					color: white;
-					.author {
-						color: white;
-					}
-					.date {
-						color: white;
-					}
-					.title {
-						color: white;
-					}
+					
 				}
 				.author {
 					font-weight: 300;
@@ -390,3 +392,4 @@ body {
 		margin: 20% 20%;		
 	}
 }
+

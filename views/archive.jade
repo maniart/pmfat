@@ -5,11 +5,11 @@ block content
 		.row
 			each entry in entries
 				.col-md-3.col-xs-6
-					.date= entry.createdAtPretty
-					.author= entry.lastName
-					h3.title= entry.title
-					a.thumbnail(href="#")
-						img(data-src="http://preliminarymaterialsforanytheory.com/pdf/thumbnails/Nilchiani-Mani-preliminatyMaterialsForTheTheoryOf-Blue-Ribbon_t9hNW.png" , alt="")
+					.thumbnail
+						.date= entry.createdAtPretty
+						.author #{entry.lastName}, #{entry.firstName}
+						h3.hidden-invisible.title= entry.title
+						img(src="#{entry.thumbnailPath}" , alt="#{entry.title}")
 						
 
 
