@@ -97,8 +97,12 @@ router.post('/', function(req, res) {
                     height: '9.8in', 
                 });
                 console.log('saving to this path: ', path.join(pdfPath, pdfFileName));
+                
                 page.render(path.join(pdfPath, pdfFileName), function(err, out) {
-
+                    if(err) {
+                        throw err;
+                        return;
+                    }
                     console.log('done saving pdf file');
                     
                 });
@@ -121,7 +125,10 @@ router.post('/', function(req, res) {
                 });
                 console.log('saving thumbnails to this path: ', path.join(thumbnailPath, thumbnailFileName));
                 page.render(path.join(thumbnailPath, thumbnailFileName), function(err, out) {
-
+                    if(err) {
+                        throw err;
+                        return;
+                    }
                     // file is now written to disk
                     console.log('done saving png file');
                     ph.exit();
