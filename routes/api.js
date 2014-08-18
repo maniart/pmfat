@@ -2,7 +2,6 @@ var express = require('express');
 var phantom = require('phantom');
 var path = require('path');
 var jade = require('jade');
-var childProcess = require('child_process');
 var fs = require('fs');
 var random = require('randomstring');
 var router = express.Router();
@@ -64,7 +63,9 @@ router.post('/', function(req, res) {
     );
     console.log('entry is: ', entry);
 
+    compileJade = jade.renderFile(path.join(__dirname, '../views/about.jade'), {
 
+    });
 
     // save the entry
     entry.save(function(err, out) {
@@ -78,19 +79,8 @@ router.post('/', function(req, res) {
                
         phantom.create(function (ph) {
             ph.createPage(function (page) {
-                compileJade = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
-                    name : req.body.lastName,
-                    objectOfCritique : req.body.objectOfCritique,
-                    antagonist : req.body.antagonist,
-                    adjective : req.body.adjective,
-                    AP : req.body.antagonistPronoun,
-                    APS : pronounLookupTable[req.body.antagonistPronoun].subjective,
-                    APP : pronounLookupTable[req.body.antagonistPronoun].possesive,
-                    PP : req.body.protagonistPronoun,
-                    PPS : pronounLookupTable[req.body.protagonistPronoun].subjective,
-                    PPP : pronounLookupTable[req.body.protagonistPronoun].possesive
+                
 
-                });
                 page.setContent(compileJade);
                 page.set('paperSize', {
                     width: '6.2in', 
