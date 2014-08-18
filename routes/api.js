@@ -77,7 +77,7 @@ router.post('/', function(req, res) {
         //console.log('Entry for :', req.body.firstName , ' has been added');
         
         // BEGIN PHANTOM 
-        /*        
+               
         phantom.create(function (ph) {
             ph.createPage(function (page) {
                 compileJade = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
@@ -136,7 +136,7 @@ router.post('/', function(req, res) {
         });
         
     // END PHANTOM
-    */
+    
         res.send({redirect: '/archive'});
         res.end();   
     }); 
