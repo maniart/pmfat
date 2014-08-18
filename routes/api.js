@@ -7,8 +7,8 @@ var random = require('randomstring');
 var router = express.Router();
 var _ = require('underscore');
 var Entry = require('./entry.js');
-var pdfPath = path.join('','/pdf/');
-var thumbnailPath = path.join('','/pdf/thumbnails/');
+var pdfPath = path.join('http://preliminarymaterialsforanytheory.com','/pdf/');
+var thumbnailPath = path.join('http://preliminarymaterialsforanytheory.com','/pdf/thumbnails/');
 
 /* BEGIN JADE */
 var compileJade,
@@ -71,7 +71,7 @@ router.post('/', function(req, res) {
         if(err) {
             return console.log('Error writing entry to DB');
         }
-        //console.log('Entry for :', req.body.firstName , ' has been added');
+        console.log('Entry for :', req.body.lastName , ' has been added');
         
         // BEGIN PHANTOM 
               
