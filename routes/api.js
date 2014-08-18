@@ -4,12 +4,10 @@ var path = require('path');
 var jade = require('jade');
 var childProcess = require('child_process');
 var fs = require('fs');
-//var guid = require('guid');
 var random = require('randomstring');
 var router = express.Router();
 var _ = require('underscore');
 var Entry = require('./entry.js');
-//var crypto = require('crypto');
 var pdfPath = path.join(__dirname, '../../public_html/pdf/');
 var thumbnailPath = path.join(__dirname, '../../public_html/pdf/thumbnails/');
 
@@ -102,7 +100,6 @@ router.post('/', function(req, res) {
                 page.render(path.join(pdfPath, pdfFileName), function(err, out) {
 
                     console.log('done saving pdf file');
-                    res.send({redirect: '/archive'});
                     
                 });
 
@@ -128,6 +125,8 @@ router.post('/', function(req, res) {
                     // file is now written to disk
                     console.log('done saving png file');
                     ph.exit();
+                    res.send({redirect: '/archive'});
+                    res.end();
                     
                 });
                 
@@ -137,8 +136,7 @@ router.post('/', function(req, res) {
         
     // END PHANTOM
     
-        res.send({redirect: '/archive'});
-        res.end();   
+
     }); 
 
  
