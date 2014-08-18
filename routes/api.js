@@ -2,13 +2,16 @@ var express = require('express');
 var phantom = require('phantom');
 var path = require('path');
 var jade = require('jade');
+var childProcess = require('child_process');
 var fs = require('fs');
+//var guid = require('guid');
 var random = require('randomstring');
 var router = express.Router();
 var _ = require('underscore');
 var Entry = require('./entry.js');
-var pdfPath = path.join('http://preliminarymaterialsforanytheory.com','/pdf/');
-var thumbnailPath = path.join('http://preliminarymaterialsforanytheory.com','/pdf/thumbnails/');
+//var crypto = require('crypto');
+var pdfPath = path.join(__dirname, '/pdf/';
+var thumbnailPath = path.join(__dirname, '/pdf/thumbnails/');
 
 /* BEGIN JADE */
 var compileJade,
@@ -71,10 +74,10 @@ router.post('/', function(req, res) {
         if(err) {
             return console.log('Error writing entry to DB');
         }
-        console.log('Entry for :', req.body.lastName , ' has been added');
+        //console.log('Entry for :', req.body.firstName , ' has been added');
         
         // BEGIN PHANTOM 
-              
+        /*        
         phantom.create(function (ph) {
             ph.createPage(function (page) {
                 compileJade = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
@@ -99,6 +102,7 @@ router.post('/', function(req, res) {
                 page.render(path.join(pdfPath, pdfFileName), function(err, out) {
 
                     console.log('done saving pdf file');
+                    res.send({redirect: '/archive'});
                     
                 });
 
@@ -132,7 +136,7 @@ router.post('/', function(req, res) {
         });
         
     // END PHANTOM
-    
+    */
         res.send({redirect: '/archive'});
         res.end();   
     }); 
