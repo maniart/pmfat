@@ -1,6 +1,16 @@
 var express = require('express');
-var phantom = require('phantom');
+//var phantom = require('phantom');
+
 var path = require('path');
+
+var phantomjs = require('phantomjs');
+var child_process = require('child_process');
+var binPath = phantomjs.path;
+var childArgs = [
+  path.join(__dirname, 'test-phantom.js'),
+  
+];
+
 var jade = require('jade');
 var fs = require('fs');
 var random = require('randomstring');
@@ -79,25 +89,20 @@ router.post('/', function(req, res) {
 
     // save the entry
     entry.save(function(err, out) {
-                
+        
+        console.log('phantomjs is: ', phantomjs);         
         if(err) {
             return console.log('Error writing entry to DB');
         }
         //console.log('Entry for :', req.body.firstName , ' has been added');
-        
-        // BEGIN PHANTOM 
-        
-        phantom.create(function (ph) {
-          ph.createPage(function (page) {
-            page.open("http://www.google.com", function (status) {
-              console.log("opened google? ", status);
-              page.evaluate(function () { return document.title; }, function (result) {
-                console.log('Page title is ' + result);
-                ph.exit();
-              });
-            });
-          });
+        child_process.execFile(binPath, childArgs, function(err, stdout, stderr) {
+          // handle results
+            console.log('stdout is: ', stdout);
         });
+        
+
+        // BEGIN PHANTOM 
+
         /*
 
         phantom.create(function (ph) {
