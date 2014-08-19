@@ -1,5 +1,5 @@
 var express = require('express');
-var phantom = require('phantom');
+var phantom = require('node-phantom');
 var path = require('path');
 var jade = require('jade');
 var fs = require('fs');
