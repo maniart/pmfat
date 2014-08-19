@@ -63,7 +63,17 @@ router.post('/', function(req, res) {
     );
     console.log('entry is: ', entry);
 
-    compileJade = jade.renderFile(path.join(__dirname, '../views/about.jade'), {
+    compileJade = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
+        name : req.body.lastName,
+        objectOfCritique : req.body.objectOfCritique,
+        antagonist : req.body.antagonist,
+        adjective : req.body.adjective,
+        AP : req.body.antagonistPronoun,
+        APS : pronounLookupTable[req.body.antagonistPronoun].subjective,
+        APP : pronounLookupTable[req.body.antagonistPronoun].possesive,
+        PP : req.body.protagonistPronoun,
+        PPS : pronounLookupTable[req.body.protagonistPronoun].subjective,
+        PPP : pronounLookupTable[req.body.protagonistPronoun].possesive
 
     });
 
@@ -80,12 +90,12 @@ router.post('/', function(req, res) {
         phantom.create(function (ph) {
             ph.createPage(function (page) {
                 
-
-                page.setContent(compileJade);
                 page.set('paperSize', {
                     width: '6.2in', 
                     height: '9.8in', 
                 });
+                page.setContent(compileJade);
+                
                 console.log('saving to this path: ', path.join(pdfPath, pdfFileName));
                 
                 page.render(path.join(pdfPath, pdfFileName), function(err, out) {
@@ -108,11 +118,12 @@ router.post('/', function(req, res) {
                     adjective : req.body.adjective,
                 });
 
-                page.setContent(compileCoverJade);
                 page.set('paperSize', {
                     width: '6.2in', 
                     height: '9.8in', 
                 });
+                page.setContent(compileCoverJade);
+                
                 console.log('saving thumbnails to this path: ', path.join(thumbnailPath, thumbnailFileName));
                 page.render(path.join(thumbnailPath, thumbnailFileName), function(err, out) {
                     if(err) {
