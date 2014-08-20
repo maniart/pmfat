@@ -101,8 +101,8 @@ router.post('/', function(req, res) {
         child_process.execFile(binPath, childArgs, function(err, stdout, stderr) {
           // handle results
             if(err) {
+                console.log(err);
 
-                throw err;
             } else {
                 console.log('stdout is: ', stdout);
                 console.log('stderr is: ', stdout);    
