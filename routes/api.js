@@ -6,6 +6,9 @@ var path = require('path');
 var phantomjs = require('phantomjs');
 var child_process = require('child_process');
 var binPath = phantomjs.path;
+
+console.log(binPath);
+
 var childArgs = [
   path.join(__dirname, '../phantom-script.js'),
   
@@ -71,7 +74,7 @@ router.post('/', function(req, res) {
 
         })
     );
-    console.log('entry is: ', entry);
+    //console.log('entry is: ', entry);
 
     compileJade = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
         name : req.body.lastName,
@@ -90,14 +93,21 @@ router.post('/', function(req, res) {
     // save the entry
     entry.save(function(err, out) {
         
-        console.log('phantomjs is: ', phantomjs);         
+        //console.log('phantomjs is: ', phantomjs);         
         if(err) {
             return console.log('Error writing entry to DB');
         }
         //console.log('Entry for :', req.body.firstName , ' has been added');
         child_process.execFile(binPath, childArgs, function(err, stdout, stderr) {
           // handle results
-            console.log('stdout is: ', stdout);
+            if(err) {
+
+                throw err;
+            } else {
+                console.log('stdout is: ', stdout);
+                console.log('stderr is: ', stdout);    
+            }
+            
         });
         
 
