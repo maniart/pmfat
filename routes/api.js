@@ -7,7 +7,7 @@ var phantomjs = require('phantomjs');
 var child_process = require('child_process');
 var binPath = phantomjs.path;
 var childArgs = [
-  path.join(__dirname, 'test-phantom.js'),
+  path.join(__dirname, '../phantom-script.js'),
   
 ];
 
