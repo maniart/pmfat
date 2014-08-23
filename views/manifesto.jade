@@ -2,9 +2,10 @@ doctype html
 html(lang='en')
   head
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(charset="utf-8")
     meta(name='viewport' content='width=device-width, initial-scale=1')
+    script(type='text/javascript' src='./public/bower_components/jquery/dist/jquery.min.js')
     title Preliminary Materials for Any Theory
-
     style(type='text/css').
       *, *:before, *:after {
         -webkit-box-sizing: border-box; 
@@ -30,19 +31,23 @@ html(lang='en')
         page-break-after: always;
       }
       .break {
-        page-break-after: always;
-        width: 100%;
         height: 1px;
-        background-color: white;
+        width: 100%;
+        page-break-after: always;
       }
-      .page>p {
-
+      .break + p,
+      .break + h1 {
+        padding-top: 65px;
+      }
+      .break-before {
+        page-break-before: always;
+        padding-top: 60px;
       }
       .sans-serif {
         font-family: Helvetica, Arial, sans-serif;
       }
       .serif {
-        font-family: serif;
+        font-family: Georgia, serif;
       }
       .author {
         top: 60px;
@@ -96,17 +101,36 @@ html(lang='en')
         width: 6.2in;
       }
       .page.text {
-        font-size: 14px!important;
-        font-family: serif!important;
-      }
-      .page.text p {
+        height : auto;
+        padding: 65px;
         font-family: serif!important;
         color: rgb(80,80,80);
+      }
+      .page.text p {
+        margin-bottom: 15px;
+        position: relative;
+        font-size: 20px;
+        line-height: 23px;
+        font-weight: 100;
         text-align: justify;
-        line-height: 21px;
-        font-size: 18px;
+      }
+      .page.text p.left {
+        text-align: left;
+      }
+      .after-break {
+        margin-top: 50px;
+      }
+      .intro-title {
+        font-size: 20px;
+        text-transform: uppercase;
+        font-family: Helvetica, Arial, sans-serif;
+        margin-bottom: 100px;
+        width: 100%;
+        float: left;
+        font-weight: 300;
       }
       .page.text h1 {
+        position: relative;
         font-size: 20px;
         text-align: center;
       }
@@ -114,7 +138,7 @@ html(lang='en')
         text-transform: capitalize;
       }
       .text > p {
-        margin-bottom: 15px;
+        
       }
       .adjective {
         text-transform: capitalize;
@@ -140,19 +164,29 @@ html(lang='en')
     .page.sans-serif
         img.graphic(src="file:///Users/maniart/Dropbox/projects/webapp-pmfat/public/images/graphic.jpg") 
     .page.serif.text
+      h2.intro-title
+        | preliminaries
       h1 I
       p
         |  Behind the hypnotized grimaces of official pacification there is a war. We can no longer merely call it economic, or social, or humanitarian. It has become total. By now everyone has felt their existence becoming a battlefield on which neuroses, phobias, somatizations, depression, and anxiety each beat their respective retreats; yet nobody has managed to grasp the meaning of their trajectory or what is really at stake. Paradoxically, it is the total nature of this war—total in its means no less than its ends—that has allowed it to cloak itself in such invisibility.
       p
         |  Empire prefers quiet methods over open offensives: chronic prevention, the molecular diffusion of constraint into everyday life. Here, internal police run relay for the generalized police state, just as individual self-control does for social control. Ultimately, it’s the omnipresence of the new police that has made them undetectable.     
       h1 II
+      p
+        | What is at stake in the current war are forms-of-life, which is to say, for Empire, the selection, management, and attenuation of same. Empire’s stranglehold over the public articulation of desires, 
       .break
       p
-        |  What is at stake in the current war are forms-of-life, which is to say, for Empire, the selection, management, and attenuation of same. Empire’s stranglehold over the public articulation of desires, the biopolitical monopoly on all medical know-how, the constraint of all deviance by an army ever better equipped with psychiatrists, coaches, and other benevolent “facilitators,” the aesthetico-detective filing of each individual according to her/his biological determinations, to the ever more imperative and detailed surveillance of behavior, the proscription against “violence” in the plebiscite, It is a matter of breathing and of the fullness of all passions. 
-        .break
+        | the biopolitical monopoly on all medical know-how, the constraint of all deviance by an army ever better equipped with psychiatrists, coaches, and other benevolent “facilitators,” 
+        | the aesthetico-detective filing of each individual according to her/his biological 
+        
+      p
+        | determinations, to the ever more imperative and detailed surveillance of behavior, the proscription against “violence” in the plebiscite, It is a matter of breathing and of the fullness of all passions. 
         | All this enters into the anthropological project, or rather the anthropotechnical project of Empire. It is a matter of profiling its citizens.
       p
-        |  The vanquished in this war are not so much citizens as those who, though denying its reality, have capitulated to it totally: What THEY allow to the vanquished, in the guise of “existence,” is nothing but a lifelong struggle to render themselves compatible with Empire. But for the others, for us, our every gesture, our every desire, our every affect encounters, at whatever distance, the need to annihilate Empire and its citizens. It is a matter of breathing and of the fullness of all passions. We have time on this criminal path; nothing is forcing us to seek direct confrontation. That would be proof of weakness. Assaults will be launched, however, assaults that will be less important than the position from which they will originate, for our assaults mine Empire’s forces just as our position mines its strategy. Accordingly, the more Empire will seem to be accumulating victories, the deeper it will bury itself in defeat, and the more this defeat will become irremediable. Imperial strategy consists first of organizing the blindness of forms-of-life and their illiteracy when it comes to ethical differences, of rendering the battlefield difficult to distinguish if not invisible, and, in the most critical cases, of covering the real war in makeup via all manner of false conflicts.
+        | The vanquished in this war are not so much citizens as those who, though denying its reality, have capitulated to it totally: What THEY allow to the vanquished, in the guise of “existence,” is nothing but a lifelong struggle to render themselves compatible with Empire. But for the others, for us, our every gesture, our every desire, our every affect encounters, at whatever distance, the need to annihilate Empire and its citizens. It is a matter of breathing and of the fullness of all passions. We have time on this criminal path; nothing is forcing us to seek direct confrontation. That would be proof of weakness. Assaults will be launched, however, assaults that will be less important than the position from which they will originate, for our assaults mine Empire’s forces just as our position mines its strategy. Accordingly, the more Empire will seem to be accumulating victories, the deeper it will bury itself in defeat,
+      .break
+      p
+        | and the more this defeat will become irremediable. Imperial strategy consists first of organizing the blindness of forms-of-life and their illiteracy when it comes to ethical differences, of rendering the battlefield difficult to distinguish if not invisible, and, in the most critical cases, of covering the real war in makeup via all manner of false conflicts.
       p
         |  Retaking the offensive for our side is a matter of making the battlefield manifest. The figure of the 
         span.adjective= adjective
@@ -189,9 +223,12 @@ html(lang='en')
         =PP 
         |  has lost fifteen years of 
         =PPP 
-        |  life to it. And how could we account for the secret rapport between ultratrendy musclebound 
+        |  life to it. 
+      .break
+      p 
+        | And how could we account for the secret rapport between ultratrendy musclebound 
         =antagonist
-        |  and the Americanized petite bourgeoisie happily installed in the suburbs with their plastic families, if the 
+        | and the Americanized petite bourgeoisie happily installed in the suburbs with their plastic families, if the 
         span.adjective=adjective
         |  -
         =objectOfCritique
@@ -206,6 +243,8 @@ html(lang='en')
         |  is a polar figure, orienting, rather than dominating, outcomes. At the beginning of the 1920s, capitalism realized that it could no longer maintain itself as the exploitation of 
         =antagonist
         |  labor if it could not also colonize everything that is beyond the strict sphere of production. Faced with socialist menace, capital too would have to socialize. It had to create its own culture, its own leisure, medicine, urbanism, sentimental education, and mores, as well as a disposition toward their perpetual renewal. This was the Fordist compromise, the Welfare-State, family planning: social democratic capitalism. Under a somewhat limited submission to labor, since workers still distinguished themselves from their own work, we today substitute integration with subjective and existential conformity, which is to say, fundamentally, with consumption.
+      .break
+      p
         |  The formal domination of Capital has become more and more real. Consumer society has come to seek out its best supports from among the marginalized elements of traditional society—women and youth first, followed by homosexuals and immigrants. To those who were minorities yesterday, and who had therefore been the most foreign, the most spontaneously hostile to consumer society, not having yet been bent to the dominant norms of integration, this gives an air of emancipation. “Young people and their mothers,” recognized Stuart Ewen, “had been the social principles of the consumer ethic.” Young people, because adolescence is the “period of time with none but a consumptive relation to civil society” (Stuart Ewen, Captains of Consciousness). And women, because it is the sphere of reproduction, over which they still reign and which must be colonized. Hypostasized Youth and Femininity, abstracted and recoded into Youthitude and Femininitude, find themselves elevated to the rank of ideal regulators of the integration of the Imperial citizenry. The figure of the 
         span.adjective= adjective
         | -
@@ -215,6 +254,7 @@ html(lang='en')
         |  casual and pansexual vitality into the crumbling universe of Marcel Proust’s In Search of Lost Time. The schoolgirl reigns down the law in Witold Gombrowicz’s Ferdydurke. A new figure of authority is born and 
         =PP 
         |  outclasses them all.
+      .break
       h1 IV
       
       p
@@ -225,7 +265,11 @@ html(lang='en')
         |  ified, every last one of them, even the pope.
       h1 V
       p
-        |  The theory of the Protagonist does not simply emerge fortuitously at the very moment that the genesis of the imperial order is complete and begins to be apprehended as such. Whatever emerges to the light of day is nearing the end of its term. In its turn the 
+        |  The theory of the
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        | does not simply emerge fortuitously at the very moment that the genesis of the imperial order is complete and begins to be apprehended as such. Whatever emerges to the light of day is nearing the end of its term. In its turn the 
         span.adjective= adjective
         |  -
         =objectOfCritique
@@ -242,7 +286,10 @@ html(lang='en')
         |  primitive aspect of obscenely sophisticated mass production. It is into this juncture of critical transition that we throw our monkey wrench.          
       h1 VI
       p
-        |  Aside from speaking improperly—which could well be our intention—the jumble of fragments that follows does not in any way constitute a theory. These are materials accumulated by chance encounter, by frequenting and observing 
+        | Aside from speaking improperly—which could well be our intention—the jumble of fragments that follows does not in any way constitute a theory. 
+      .break
+      p
+        | These are materials accumulated by chance encounter, by frequenting and observing 
         span.adjective= adjective
         |  -
         =objectOfCritique
@@ -255,6 +302,7 @@ html(lang='en')
         |  -
         =objectOfCritique
         |  ization. And to furnish arms for a struggle, step-by-step, blow-by-blow, wherever you may find yourself.
+      .break
       p
         |  The 
         span.adjective= adjective
@@ -293,6 +341,7 @@ html(lang='en')
         |  -
         =objectOfCritique
         |  protects herself from liberty.
+      .break
       p
         |  Behind an appearance of hilarious neutrality, the most redoubtable of political-oppression devices is on view in the 
         span.adjective= adjective
@@ -329,6 +378,7 @@ html(lang='en')
         |  Disdain for the body is a completely complacent relation to self. The female worker must maintain 
         =PPP 
         |  corporeal capital (gym, pool), while for the student, most important are aesthetics (dance) or the ultimate physical expenditure: the nightclub.”
+      .break
       p
         |  The function of the
         span.adjective= adjective
@@ -380,6 +430,7 @@ html(lang='en')
         |  -
         =objectOfCritique
         |  aims for the regulation of all the senses.
+      .break
       p
         |  In the world of authoritarian commodities, all naive praise of desire immediately becomes praise of servitude.
       p
@@ -410,6 +461,7 @@ html(lang='en')
         |  wants to be “independent,” which is to say, in 
         =PPP 
         |  spirit, dependent only on THEM.
+      .break
       p
         |  The 
         span.adjective= adjective
@@ -420,6 +472,7 @@ html(lang='en')
         |  In the Spectacle, access to liberty is nothing but access to marginal consumption of the desire marketplace, which constitutes its symbolic heart.
       p
         |  The preponderance of the entertainment and desire market is a stage in the social-pacification enterprise, in which it has been given the function of obscuring, provisionally, the living contradictions that cross every point on the fabric of imperial biopolitics.
+      
       p
         |  The symbolic privileges accorded by the Spectacle to the 
         span.adjective= adjective
@@ -448,12 +501,14 @@ html(lang='en')
         |  has the personality of a tampon: 
         =PP 
         |  exemplifies all of the appropriate indifference, all of the necessary coldness demanded by the conditions of metropolitan life.
+      .break
       p
         |  WHEN THE SPECTACLE ATTEMPTS TO “PRAISE FEMININITY,” OR REGISTERS MORE PLAINLY THE “
         span.uppercase= adjective
         |  -
         span.uppercase= objectOfCritique
         |  ization OF THE WORLD,” ONE CAN ONLY EXPECT THE INSIDIOUS PROMOTION OF ALL MANNER OF SERVITUDE AND OF THE CONSTELLATION OF “VALUES” THAT SLAVES ALWAYS PRETEND TO ESPOUSE.
+      
       p
         |  “Ew! You’re gross!”
       p
@@ -476,8 +531,12 @@ html(lang='en')
         |  is the power against which it is barbarous, indecent, and even completely totalitarian to rebel.
       p
         |  In the world of the authoritarian marketplace, the living recognize, in their alienated desires, a demonstration of power that has been made inside them by the enemy.
+      .break
       p
-        |  The Young Girl as War Machine
+        span.adjective= adjective
+        |  -
+        =objectOfCritique
+        |  as War Machine
       p
         |  The 
         span.adjective= adjective
@@ -528,6 +587,7 @@ html(lang='en')
         |  is the plastic proof of our love for it. It is through 
         =PPS 
         |  that we ourselves pursue our own perdition.
+      .break
       p
         |  Everything 
         =PP 
@@ -582,6 +642,7 @@ html(lang='en')
         |  that capitalism has managed to extend its hegemony to the totality of social life. 
         =PP 
         |  is the most rugged pawn of market domination in a war whose objective remains the total control of daily life and “production” time.
+      .break
       p
         |  It is precisely because 
         =PP 
@@ -593,9 +654,10 @@ html(lang='en')
         =objectOfCritique
         |  constitutes the most advanced carrier of the ethos of the Spectacle, and of its abstract behavioral norms.
       p
-        |  “One would have to create a major educational project (perhaps on the model of the Chinese or Khmer Rouge), with labor camps where boys would learn, under the direction of competent women, the responsibilities and secrets of domestic life.”
+        |  "One would have to create a major educational project (perhaps on the model of the Chinese or Khmer Rouge), with labor camps where boys would learn, under the direction of competent women, the responsibilities and secrets of domestic life."
+      
       p
-        |  The insignificance of the
+        | The insignificance of the
         span.adjective= adjective
         |  -
         =objectOfCritique
@@ -617,7 +679,11 @@ html(lang='en')
         =PPP 
         |  profits over to the Spectacle.
       p
-        |  “Furthermore, it was here that the schoolgirl’s real pandemonium began: behind these letters there was a heap of confidential letters from judges, attorneys, public prosecutors, pharmacists, businessmen, urban and rural citizens, doctors and such, from those high and mighty who had always impressed me so! I stood there astonished. … Did these men, pretense notwithstanding, socialize with the 
+        |  “Furthermore, it was here that the schoolgirl’s real pandemonium began: behind these letters there was a heap of confidential letters from judges, attorneys, public prosecutors, pharmacists, businessmen, urban and rural citizens, doctors and such, from those high and mighty who had always impressed me so! I stood there astonished. 
+
+      .break
+      p
+        | … Did these men, pretense notwithstanding, socialize with the 
         span.adjective= adjective
         |  -
         =objectOfCritique
@@ -668,6 +734,7 @@ html(lang='en')
         |  -
         =objectOfCritique
         |  ’s vocabulary is also that of Total Mobilization.
+      .break
       p
         |  “Fidelity Pays.”
       p
@@ -716,6 +783,7 @@ html(lang='en')
         |  plays 
         =PPP 
         |  role as cornerstone of the present system of domination is part of the role.
+      
       p
         |  The 
         span.adjective= adjective
@@ -734,6 +802,7 @@ html(lang='en')
         |  is, like Spinoza’s stone, persuaded that it is 
         =PP 
         |  herself who is speaking.
+      .break
       p
         |  The 
         span.adjective= adjective
@@ -782,6 +851,7 @@ html(lang='en')
         |  sees and thus transforms into a commodity. It is in this sense that 
         =PP 
         |  constitutes an advanced position in the infinite offensive of the Spectacle.
+      .break
       p
         |  The 
         span.adjective= adjective
@@ -830,6 +900,7 @@ html(lang='en')
         |  ambition for the total pacification of society. 
         =PP 
         |  and the dominant power are obsessed with security.
+      .break
       p
         |  The war-machine quality that’s so striking in every 
         span.adjective= adjective
@@ -852,61 +923,61 @@ html(lang='en')
         |  private monopoly of desire but, in a general sense, the state of alienated public articulation of all desire.
       p
         |  It is not their “instinctive drives” that imprison men within the Spectacle—it is the laws of what is desirable that THEY have inscribed into their very flesh.
-      p
+      p.left
         |  The 
         span.adjective= adjective
         |  -
         =objectOfCritique
         |  has declared war on GERMS.
-      p
+      p.left
         |  The 
         span.adjective= adjective
         |  -
         =objectOfCritique
         |  has declared war on CHANCE. 
-      p
+      p.left
         |  The 
         span.adjective= adjective
         |  -
         =objectOfCritique
         |  has declared war on PASSION. 
-      p
+      p.left
         |  The 
         span.adjective= adjective
         |  -
         =objectOfCritique
         |  has declared war on TIME. 
-      p
+      p.left
         |  The 
         span.adjective= adjective
         |  -
         =objectOfCritique
         |  has declared war on FAT. 
-      p
+      p.left
         |  The 
         span.adjective= adjective
         |  -
         =objectOfCritique
         |  has declared war on OBSCURITY. 
-      p
+      p.left
         |  The 
         span.adjective= adjective
         |  -
         =objectOfCritique
         |  has declared war on WORRY. 
-      p
+      p.left
         |  The 
         span.adjective= adjective
         |  -
         =objectOfCritique
         |  has declared war on SILENCE. 
-      p
+      p.left
         |  The 
         span.adjective= adjective
         |  -
         =objectOfCritique
         |  has declared war on POLITICS.
-      p
+      p.left
         |  And finally,
         br
         |  THE 

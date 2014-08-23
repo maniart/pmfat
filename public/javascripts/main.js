@@ -118,7 +118,9 @@ var pmfat = (function(w, d, $, _) {
     		title;
 
     	name = capitalizeFirstLetter($.trim($('#user-last-name').val()));
-    	title = capitalizeFirstLetter($.trim($('#adjective').val())) + '-' + capitalizeFirstLetter($.trim($('#object-of-critique').val()));
+    	title = capitalizeFirstLetter($.trim($('#adjective').val())) 
+				+ '-' 
+				+ capitalizeFirstLetter($.trim($('#object-of-critique').val()));
 
     	$('.confirm-message .name .content').text(name);
     	$('.confirm-message .theory-title .content').text('Preliminary Materials for a Theory of the ' + title);
@@ -161,16 +163,15 @@ var pmfat = (function(w, d, $, _) {
 						})
 						.success(function( data, textStatus, jqXHR ) {
 							console.log("Success Received: " , data);
-							if(typeof data.redirect === 'string') {
+							if(typeof data.redirect === 'string') {	
 								window.location = data.redirect;
-							}
+							} 
 						})
 						.done(function( data, textStatus, jqXHR ) {
+						    console.log('Submission Confirmed');
 						    console.log( "Data Saved: " , data );
 					  	});
-					  	
-
-					  	console.log('Submission Confirmed');	
+					  		
 					});	
 				});			
 

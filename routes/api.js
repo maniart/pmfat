@@ -1,69 +1,84 @@
-var express = require('express');
-//var phantom = require('phantom');
+/* Imported modules */
+var express,
+    path,
+    phantomjs,
+    child_process,
+    jade,
+    fs,
+    random,
+    _;
 
-var path = require('path');
+express = require('express');
+path = require('path');
+phantomjs = require('phantomjs');
+child_process = require('child_process');
+jade = require('jade');
+fs = require('fs');
+random = require('randomstring');
+_ = require('underscore');
 
-var phantomjs = require('phantomjs');
-var child_process = require('child_process');
-var binPath = phantomjs.path;
+/* Local vars */
 
-console.log(binPath);
-
-var childArgs = [
-  path.join(__dirname, '../phantom-script.js'),
-  
-];
-
-var jade = require('jade');
-var fs = require('fs');
-var random = require('randomstring');
-var router = express.Router();
-var _ = require('underscore');
-var Entry = require('./entry.js');
-var pdfPath = path.join(__dirname, '../../public_html/pdf/');
-var thumbnailPath = path.join(__dirname, '../../public_html/pdf/thumbnails/');
-
-/* BEGIN JADE */
-var compileJade,
-    compileCoverJade;
-/* END JADE */
-
-
-
-var title,
+var binPath,
+    router,
+    Entry,
+    pdfPath,
+    thumbnailPath,
+    compileJade,
+    compileCoverJade,
+    title,
     baseFileName,
     pdfFileName,
     thumbnailFileName,
     fullPath,
     entry,
-    pronounLookupTable = {
-        he : {
-            subjective : 'him',
-            possesive : 'his'
-        },
-        she : {
-            subjective : 'her',
-            possesive : 'her'
-        },
-        it : {
-            subjective : 'it',
-            possesive : 'its'  
-        }
-    };
+    pronounLookupTable,
+    childArgs;
+
+
+binPath = phantomjs.path;
+router = express.Router();
+Entry = require('./entry.js');
+pdfPath = path.join(__dirname, '../../public_html/pdf/');
+thumbnailPath = path.join(__dirname, '../../public_html/pdf/thumbnails/');
+pronounLookupTable = {
+    he : {
+        subjective : 'him',
+        possesive : 'his'
+    },
+    she : {
+        subjective : 'her',
+        possesive : 'her'
+    },
+    it : {
+        subjective : 'it',
+        possesive : 'its'  
+    }
+};
+childArgs = [
+    path.join(__dirname, '../phantom-script.js')
+];
 
 /* BEGIN CRUD */
 router.post('/', function(req, res) {
+    
     // Generate the file name based on user input and add a random string to it.
-    baseFileName = req.body.lastName + '-' + req.body.firstName + '-preliminatyMaterialsForTheTheoryOf-' + req.body.adjective + '-' + req.body.objectOfCritique + '_' + random.generate(5);
-    pdfFileName = baseFileName + '.pdf';
+    baseFileName = req.body.lastName 
+                + '-' + req.body.firstName 
+                + '-preliminatyMaterialsForTheTheoryOf-' 
+                + req.body.adjective + '-' 
+                + req.body.objectOfCritique 
+                + '_' 
+                + random.generate(5);
+                pdfFileName = baseFileName + '.pdf';
+
     thumbnailFileName = baseFileName + '.png';
     
-    title = 'Preliminary Materials For a Theory of the ' + req.body.adjective + '-' + req.body.objectOfCritique;
+    title = 'Preliminary Materials For a Theory of the ' 
+            + req.body.adjective 
+            + '-' 
+            + req.body.objectOfCritique;
     
-    console.log('adjective: ', req.body.adjective, '\n', 'objectOfCritique: ', req.body.objectOfCritique, '\n', 'title:', title );
-
-
-    // prepare the database entry by extending the request body object by two properties defined in the schema. 
     entry = new Entry(_.extend(req.body, {
             
             'title' : title,
@@ -74,7 +89,6 @@ router.post('/', function(req, res) {
 
         })
     );
-    //console.log('entry is: ', entry);
 
     compileJade = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
         name : req.body.lastName,
@@ -93,11 +107,10 @@ router.post('/', function(req, res) {
     // save the entry
     entry.save(function(err, out) {
         
-        //console.log('phantomjs is: ', phantomjs);         
         if(err) {
             return console.log('Error writing entry to DB');
         }
-        //console.log('Entry for :', req.body.firstName , ' has been added');
+        /*
         child_process.execFile(binPath, childArgs, function(err, stdout, stderr) {
           // handle results
             if(err) {
@@ -109,7 +122,25 @@ router.post('/', function(req, res) {
             }
             
         });
-        
+    */
+        fs.writeFile('./test.html', compileJade, function(err) {
+            if(err) {
+                console.log('>> api.js : error while saving new file with fs: ', err);
+            } else {
+                console.log('>> api.js : file saved');
+                child_process.execFile(binPath, childArgs, function(err, stdout, stderr) {
+                    if(err) {
+                        console.log('>> api.js : error is: ', err);
+
+                    } else {
+                        console.log('>> api.js : stdout is: ', stdout);
+                        console.log('>> api.js : stderr is: ', stdout);    
+                        res.send({redirect: '/archive'});
+                        res.end();
+                    }
+                });
+            }
+        });
 
         // BEGIN PHANTOM 
 
