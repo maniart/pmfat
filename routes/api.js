@@ -123,7 +123,7 @@ router.post('/', function(req, res) {
             
         });
     */
-        fs.writeFile('../public_html/tmp/test.html', compileJade, function(err) {
+        fs.writeFile(path.join(__dirname, '../../public_html/tmp/test.html'), compileJade, function(err) {
             if(err) {
                 console.log('>> api.js : error while saving new file with fs: ', err);
             } else {
