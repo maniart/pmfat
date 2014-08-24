@@ -14,7 +14,8 @@
     "randomstring": "^1.0.3",
     "underscore": "^1.6.0",
     "pretty-date": "^0.2.0",
-    "phantomjs": "^1.9.7-15"
+    "phantomjs": "^1.9.7-15",
+    "npid": "^0.4.0"
   },
   "devDependencies": {
     "less": "^1.7.3",

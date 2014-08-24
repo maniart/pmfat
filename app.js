@@ -5,12 +5,12 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var MONGOHQ_URL = 'mongodb://mani:savegaza@kahana.mongohq.com:10047/app27662726';
 var MONGO_LOCAL = 'mongodb://localhost/pmfat';
 var routes = require('./routes/index');
 var archive = require('./routes/archive');
 var api = require('./routes/api');
 var about = require('./routes/about');
+var npid = require('npid');
 
 var app = express();
 
@@ -41,6 +41,16 @@ app.set('port', process.env.PORT || 3000);
 
 /// error handlers
 
+if(app.get('env') === 'production') {
+    try {
+        var pid = npid.create('/var/run/pmfat.pid');
+        pid.removeOnExit();
+    } catch (err) {
+        console.log('>> app.js - npmid error : ',err);
+        process.exit(1);
+    }
+}
+
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -66,7 +76,6 @@ app.use(function(err, req, res, next) {
 
 /* BEGIN MONGODB */
 mongoose.connect('mongodb://localhost/pmfat');
-//mongoose.connect(MONGOHQ_URL);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
