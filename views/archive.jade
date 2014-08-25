@@ -3,13 +3,15 @@ extends layout
 block content
 	.container.archive
 		.row
+			if entries.length === 0
+				h3 No entries yet. Create one!
 			each entry in entries
 				.col-md-3.col-xs-6
 					.thumbnail
 						.date= entry.createdAtPretty
 						.author #{entry.lastName}, #{entry.firstName}
 						h3.hidden-invisible.title= entry.title
-						//- img(src="#{entry.thumbnailPath}" , alt="#{entry.title}")
+						img(src="#{entry.thumbnailPath}" , alt="#{entry.title}")
 						
 
 

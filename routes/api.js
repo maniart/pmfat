@@ -24,23 +24,29 @@ var binPath,
     Entry,
     pdfPath,
     thumbnailPath,
-    compileJade,
-    compileCoverJade,
+    compiledManifesto,
+    compiledCover,
     title,
     baseFileName,
     pdfFileName,
     thumbnailFileName,
+    htmlFileName,
     fullPath,
     entry,
     pronounLookupTable,
-    childArgs;
+    phantomArgs;
 
-
+phantomArgs = [];
 binPath = phantomjs.path;
 router = express.Router();
 Entry = require('./entry.js');
+
+
 pdfPath = path.join(__dirname, '../../public_html/pdf/');
 thumbnailPath = path.join(__dirname, '../../public_html/pdf/thumbnails/');
+htmlPath = path.join(__dirname, '../../public_html/pdf/tmp/');
+
+
 pronounLookupTable = {
     he : {
         subjective : 'him',
@@ -55,9 +61,9 @@ pronounLookupTable = {
         possesive : 'its'  
     }
 };
-childArgs = [
-    path.join(__dirname, '../phantom-script.js')
-];
+
+
+
 
 /* BEGIN CRUD */
 router.post('/', function(req, res) {
@@ -70,10 +76,19 @@ router.post('/', function(req, res) {
                 + req.body.objectOfCritique 
                 + '_' 
                 + random.generate(5);
-                pdfFileName = baseFileName + '.pdf';
-
-    thumbnailFileName = baseFileName + '.png';
     
+    pdfFileName = baseFileName + '.pdf'; // final pdf output file name
+    thumbnailFileName = baseFileName + '.png'; // final cover output file name
+    htmlFileName = baseFileName + '.html'; // temporary rendered html file name
+
+    phantomArgs = [
+        path.join(__dirname, '../phantom-scripts/render.js'),
+        htmlPath + htmlFileName,
+        pdfPath + pdfFileName,
+        thumbnailPath + thumbnailFileName
+    ];
+
+
     title = 'Preliminary Materials For a Theory of the ' 
             + req.body.adjective 
             + '-' 
@@ -90,7 +105,7 @@ router.post('/', function(req, res) {
         })
     );
 
-    compileJade = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
+    compiledManifesto = jade.renderFile(path.join(__dirname, '../views/manifesto.jade'), {
         name : req.body.lastName,
         objectOfCritique : req.body.objectOfCritique,
         antagonist : req.body.antagonist,
@@ -110,104 +125,43 @@ router.post('/', function(req, res) {
         if(err) {
             return console.log('Error writing entry to DB');
         }
-        /*
-        child_process.execFile(binPath, childArgs, function(err, stdout, stderr) {
-          // handle results
-            if(err) {
-                console.log(err);
-
-            } else {
-                console.log('stdout is: ', stdout);
-                console.log('stderr is: ', stdout);    
-            }
-            
-        });
-    */
-        fs.writeFile(path.join(__dirname, '../../public_html/tmp/test.html'), compileJade, function(err) {
+        
+        fs.writeFile(htmlPath + htmlFileName, compiledManifesto, function(err) {
             if(err) {
                 console.log('>> api.js : error while saving new file with fs: ', err);
             } else {
                 console.log('>> api.js : file saved');
-                child_process.execFile(binPath, childArgs, function(err, stdout, stderr) {
+                
+                phantomProcess = child_process.execFile(binPath, phantomArgs, function(err, stdout, stderr) {
                     if(err) {
                         console.log('>> api.js : error is: ', err);
 
                     } else {
+                        
                         console.log('>> api.js : stdout is: ', stdout);
                         console.log('>> api.js : stderr is: ', stdout);    
-                        res.send({redirect: '/archive'});
+                        
+                        fs.unlink(htmlPath + htmlFileName, function (err) {
+                            if (err) throw err;
+                            console.log('>> api.js : tmp html file removed.');
+                        });
+                        
+                        res.send({
+                            redirect: '/archive'
+                        });
+                        
                         res.end();
                     }
                 });
+                phantomProcess.stdout.on('data', function(data) {
+                    console.log(data.toString()); 
+                });
+                
             }
         });
 
-        // BEGIN PHANTOM 
-
-        /*
-
-        phantom.create(function (ph) {
-            ph.createPage(function (page) {
-                
-                page.set('paperSize', {
-                    width: '6.2in', 
-                    height: '9.8in', 
-                });
-                page.setContent(compileJade);
-                
-                console.log('saving to this path: ', path.join(pdfPath, pdfFileName));
-                
-                page.render(path.join(pdfPath, pdfFileName), function(err, out) {
-                    if(err) {
-                        throw err;
-                        return;
-                    }
-                    console.log('done saving pdf file');
-                    
-                });
-
-               
-            });
-
-            ph.createPage(function (page) {
-                compileCoverJade = jade.renderFile(path.join(__dirname, '../views/cover.jade'), {
-                    name : req.body.lastName,
-                    objectOfCritique : req.body.objectOfCritique,
-                    antagonist : req.body.antagonist,
-                    adjective : req.body.adjective,
-                });
-
-                page.set('paperSize', {
-                    width: '6.2in', 
-                    height: '9.8in', 
-                });
-                page.setContent(compileCoverJade);
-                
-                console.log('saving thumbnails to this path: ', path.join(thumbnailPath, thumbnailFileName));
-                page.render(path.join(thumbnailPath, thumbnailFileName), function(err, out) {
-                    if(err) {
-                        throw err;
-                        return;
-                    }
-                    // file is now written to disk
-                    console.log('done saving png file');
-                    ph.exit();
-                    res.send({redirect: '/archive'});
-                    res.end();
-                    
-                });
-                
-            });
-
-        });
-        */
-    // END PHANTOM
-    
-
     }); 
 
- 
-    
 });
 
 
