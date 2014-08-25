@@ -11,6 +11,7 @@ var archive = require('./routes/archive');
 var api = require('./routes/api');
 var about = require('./routes/about');
 var npid = require('npid');
+var onExit;
 
 var app = express();
 
@@ -40,8 +41,6 @@ app.use(function(req, res, next) {
 app.set('port', process.env.PORT || 3000);
 
 /// error handlers
-
-
 if(app.get('env') === 'production') {
     try {
         var pid = npid.create('/var/run/pmfat.pid');
@@ -65,6 +64,26 @@ if (app.get('env') === 'development') {
     });
 }
 
+onExit = function() {
+    if(app.get('env') === 'production') {
+        try {
+            fs.unlink('/var/run/pmfat.pid', function() {
+                console.log('>> app.js : removed /var/run/pmfat.pid before exit');
+            });
+        } catch(e) {
+            console.log('>> app.js : fs error while trying to remove /var/run/pmfat.pid before exit : ', e);
+        }    
+    }
+    console.log('>> app.js : Sorry to see you go. Run me again soon.');
+    
+};
+
+// remove /var/run/pmfat.pid file on production, before exit
+process.on('exit', onExit);
+process.on('uncaughtException', onExit);
+process.on('SIGTERM', onExit);
+process.on('SIGINT', onExit);
+
 
 // production error handler
 // no stacktraces leaked to user
@@ -84,31 +103,5 @@ db.once('open', function callback () {
     console.log('connected to mongodb', ' port is: ', app.get('port'));
 });
 
-
-/* REMOVE pmfat.pid FILE ON EXIT */
-process.stdin.resume();//so the program will not close instantly
-
-var exitHandler = function exitHandler(options, err) {
-    if(app.get('env') === 'production') {
-        if (options.cleanup) {
-            fs.unlink('/var/run/pmfat.pid', function() {
-                console.log('>> app.js : Before closing : removed pmfat.pid');    
-            });
-            
-        }
-    }
-    console.log('>> app.js : Doing some stuff before closing the app.');
-    if (err) console.log(err.stack);
-    if (options.exit) process.exit();
-}
-
-//do something when app is closing
-process.on('exit', exitHandler.bind(null,{cleanup:true}));
-
-//catches ctrl+c event
-process.on('SIGINT', exitHandler.bind(null, {exit:true}));
-
-//catches uncaught exceptions
-process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
 module.exports = app;
