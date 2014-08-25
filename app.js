@@ -1,3 +1,4 @@
+var fs = require('fs');
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -12,6 +13,7 @@ var api = require('./routes/api');
 var about = require('./routes/about');
 var npid = require('npid');
 var onExit;
+
 
 var app = express();
 
