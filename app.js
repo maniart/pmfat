@@ -17,7 +17,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-console.log('dir is: ', __dirname);
+console.log('dir is: ', __dirname, ' ENV is: ', app.get('env'));
 app.use(favicon({ maxAge: 0 }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
