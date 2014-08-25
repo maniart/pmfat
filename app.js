@@ -10,7 +10,7 @@ var routes = require('./routes/index');
 var archive = require('./routes/archive');
 var api = require('./routes/api');
 var about = require('./routes/about');
-var npid = require('npid');
+//var npid = require('npid');
 
 var app = express();
 
@@ -41,6 +41,7 @@ app.set('port', process.env.PORT || 3000);
 
 /// error handlers
 
+/*
 if(app.get('env') === 'production') {
     try {
         var pid = npid.create('/var/run/pmfat.pid');
@@ -50,6 +51,7 @@ if(app.get('env') === 'production') {
         process.exit(1);
     }
 }
+*/
 
 // development error handler
 // will print stacktrace
