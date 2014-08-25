@@ -10,7 +10,7 @@ var routes = require('./routes/index');
 var archive = require('./routes/archive');
 var api = require('./routes/api');
 var about = require('./routes/about');
-//var npid = require('npid');
+var npid = require('npid');
 
 var app = express();
 
