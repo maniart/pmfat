@@ -41,7 +41,7 @@ app.set('port', process.env.PORT || 3000);
 
 /// error handlers
 
-/*
+
 if(app.get('env') === 'production') {
     try {
         var pid = npid.create('/var/run/pmfat.pid');
@@ -51,7 +51,7 @@ if(app.get('env') === 'production') {
         process.exit(1);
     }
 }
-*/
+
 
 // development error handler
 // will print stacktrace
@@ -84,5 +84,31 @@ db.once('open', function callback () {
     console.log('connected to mongodb', ' port is: ', app.get('port'));
 });
 
+
+/* REMOVE pmfat.pid FILE ON EXIT */
+process.stdin.resume();//so the program will not close instantly
+
+var exitHandler = function exitHandler(options, err) {
+    if(app.get('env') === 'production') {
+        if (options.cleanup) {
+            fs.unlink('/var/run/pmfat.pid', function() {
+                console.log('>> app.js : Before closing : removed pmfat.pid');    
+            });
+            
+        }
+    }
+    console.log('>> app.js : Doing some stuff before closing the app.');
+    if (err) console.log(err.stack);
+    if (options.exit) process.exit();
+}
+
+//do something when app is closing
+process.on('exit', exitHandler.bind(null,{cleanup:true}));
+
+//catches ctrl+c event
+process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+
+//catches uncaught exceptions
+process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
 module.exports = app;
