@@ -21,19 +21,17 @@ addPrettyDates = function(entries) {
 /* GET home page. */
 
 router.get('/', function(req, res) {
-	var entries = Entry.find({}, function(error, entries) {
-		//console.log(entries instanceof Array);
+	
+	var entries = Entry.find({}).sort({createdAt : -1}).exec(function(error, entries) {
 		if(error) {
 			throw error;
 		}
-		//console.log('Entries found! : ', entries, ' type is: ', typeof entries);
-		//console.log('entries are : ', entries);
 		res.render('archive', { 
 			bodyClass : 'archive',
 			entries : addPrettyDates(entries)
 		});
 	});
-  	  
+
 });
 
 module.exports = router;

@@ -8,9 +8,12 @@ var pmfat = (function(w, d, $, _) {
 		modals,
 		isFormComplete,
 		populateConfirmModal,
-		capitalizeFirstLetter;
+		capitalizeFirstLetter,
+		initShareButton;
 
 	modals = {};
+
+	
 
 	sanitizeFormData = function(serializedFormData) {
 		
