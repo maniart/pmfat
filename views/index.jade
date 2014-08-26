@@ -62,9 +62,9 @@ block content
           p.theory-title
             | Title:
             span.content
-          .modal-footer
-            button.btn.btn-default#edit(type="button" , data-dismiss="modal") Edit
-            button.btn.btn-primary#generate(type="button") Generate!
+        .modal-footer
+          button.btn.btn-default#edit(type="button" , data-dismiss="modal") Edit
+          button.btn.btn-primary#generate(type="button") Generate!
 
   .modal.fade.form-incomplete#form-incomplete(tabindex="-1" , role="dialog" , aria-labelledby="formIncomplete" , aria-hidden="true")
     .modal-dialog.modal-sm
@@ -73,9 +73,9 @@ block content
           h4.modal-title#incompleteModalTitle Form incomplete
         .modal-body
           p.message
-            | Please complete the form
-          .modal-footer
-            button.btn.btn-default#close(type="button" , data-dismiss="modal") Close
+            | Please complete the form.
+        .modal-footer
+          button.btn.btn-default#close(type="button" , data-dismiss="modal") Close
 
 
   .modal.fade.wait-message#wait-modal(tabindex="-1" , role="dialog" , aria-labelledby="waitModal" , aria-hidden="true")

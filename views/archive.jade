@@ -12,6 +12,7 @@ block content
 						.author #{entry.lastName}, #{entry.firstName}
 						h3.hidden-invisible.title= entry.title
 						img(src="./pdf/thumbnails/#{entry.thumbnailFileName}" , alt="#{entry.title}")
+						iframe(id="viewer" , src="/public/bower_components/viewerjs/#../test.pdf" , width="600" , height="450" , allowfullscreen , webkitallowfullscreen)
 						.share
 
 					

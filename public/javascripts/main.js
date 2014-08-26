@@ -9,11 +9,13 @@ var pmfat = (function(w, d, $, _) {
 		isFormComplete,
 		populateConfirmModal,
 		capitalizeFirstLetter,
+		initShareButton,
 		initShareButton;
 
 	modals = {};
 
-	
+	var $body = $('body');
+    	var currentPageTitle = $body.data('pagetitle');
 
 	sanitizeFormData = function(serializedFormData) {
 		
@@ -68,6 +70,28 @@ var pmfat = (function(w, d, $, _) {
     
     };
     
+    initShareButton = function() {
+    	
+    	var $body,
+    		currentPageTitle,
+    		$thumbnails,
+    		$shareEl;
+
+    	$body = $('body');
+    	currentPageTitle = $body.data('pagetitle');
+    	$thumbnails = $('.thumbnail');
+
+		if(currentPageTitle !== 'archive') { return; }
+
+		new Share('.share');
+		 $thumbnails.each(function(idx, el) {
+		 	$shareEl = $('.share', $(el));
+		 	//console.log('shareEl is: ', $shareEl);
+		 });
+
+
+    };
+
     initSnapScroll = function(pageTitles) {
 
     	if(!pageTitles instanceof Array) {
@@ -162,7 +186,12 @@ var pmfat = (function(w, d, $, _) {
 						$.ajax({
 							type: "POST",
 							url: "/api",
-						  	data: formData
+						  	data: formData,
+						  	beforeSend: function() {
+						  		modals.confirm.modal('hide');
+						  		modals.processing.modal('show');
+						  		console.log('>> main.js : beforeSend');
+						  	}
 						})
 						.success(function( data, textStatus, jqXHR ) {
 							console.log("Success Received: " , data);
@@ -177,8 +206,6 @@ var pmfat = (function(w, d, $, _) {
 					  		
 					});	
 				});			
-
-				
 
 			} else {
 				modals.incomplete.modal('show');
@@ -215,8 +242,8 @@ var pmfat = (function(w, d, $, _) {
 
 		attachListeners();
 		initAnchorScroll();
-		initSnapScroll(['index']);
-		
+		initSnapScroll( ['index'] );
+		initShareButton();		
 		console.log('Made in Industry City - \nLovely Sunset Park, Brooklyn.');
 	
 	};
