@@ -285,6 +285,7 @@ var pmfat = (function(w, d, $, _) {
 		initAnchorScroll();
 		initSnapScroll( ['index'] );
 		initShareButton();		
+		initPdfViewer();
 		console.log('Made in Industry City - \nLovely Sunset Park, Brooklyn.');
 	
 	};
