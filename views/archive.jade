@@ -3,6 +3,7 @@ extends layout
 block content
 	.container.archive
 		.row
+			canvas#the-canvas
 			if entries.length === 0
 				h3 No entries yet. Create one!
 			each entry in entries
@@ -12,7 +13,6 @@ block content
 						.author #{entry.lastName}, #{entry.firstName}
 						h3.hidden-invisible.title= entry.title
 						img(src="./pdf/thumbnails/#{entry.thumbnailFileName}" , alt="#{entry.title}")
-						iframe(id="viewer" , src="./app/bower_components/viewerjs/#../pdf/#{entry.pdfFileName}" , width="600" , height="450" , allowfullscreen , webkitallowfullscreen)
 						.share
 
 					

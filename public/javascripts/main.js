@@ -10,7 +10,8 @@ var pmfat = (function(w, d, $, _) {
 		populateConfirmModal,
 		capitalizeFirstLetter,
 		initShareButton,
-		initShareButton;
+		initShareButton,
+		initPdfViewer;
 
 	modals = {};
 
@@ -155,6 +156,46 @@ var pmfat = (function(w, d, $, _) {
     	if(callback && typeof callback === 'function') {
     		callback();
     	}
+    };
+
+    initPdfViewer = function() {
+
+    	var	$body,
+    		currentPageTitle,
+    		url;
+
+    	$body = $('body');
+    	currentPageTitle = $body.data('pagetitle');
+
+    	if(currentPageTitle !== 'archive') {
+    		return;
+    	}
+
+    	url = 'http://preliminarymaterialsforanytheory.com/pdf/Bob-Sponge-preliminatyMaterialsForTheTheoryOf-Blurry-Thing_TRw2w.pdf';
+
+    	PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
+	      //
+	      // Fetch the first page
+	      //
+	      pdf.getPage(1).then(function getPageHelloWorld(page) {
+	        var scale = 1;
+	        var viewport = page.getViewport(scale);
+
+	        //
+	        // Prepare canvas using PDF page dimensions
+	        //
+	        var canvas = document.getElementById('the-canvas');
+	        var context = canvas.getContext('2d');
+	        canvas.height = viewport.height;
+	        canvas.width = viewport.width;
+	        
+	        //
+	        // Render PDF page into canvas context
+	        //
+	        page.render({canvasContext: context, viewport: viewport});
+	      });
+	    });
+
     };
 
 	attachListeners = function() {

@@ -153,6 +153,7 @@ router.post('/', function(req, res) {
                         res.end();
                     }
                 });
+                
                 phantomProcess.stdout.on('data', function(data) {
                     console.log(data.toString()); 
                 });

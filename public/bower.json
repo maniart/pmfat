@@ -10,7 +10,6 @@
     "bootstrap": "~3.2.0",
     "underscore": "~1.6.0",
     "panelsnap": "~0.12.0",
-    "share-button": "~0.4.1",
-    "viewerjs": "~0.2.1"
+    "share-button": "~0.4.1"
   }
 }
