@@ -171,6 +171,8 @@ var pmfat = (function(w, d, $, _) {
     	if(currentPageTitle !== 'archive') {
     		return;
     	}
+
+    	modals.pdfViewer.modal('show');
     	
     	PDFJS.getDocument(pdfPath).then(function getPdfHelloWorld(pdf) {
 	      //
@@ -272,6 +274,10 @@ var pmfat = (function(w, d, $, _) {
 		if(w.location.hash === '#dev') {
 			$('.under-construction').fadeOut(300);
 		}
+
+		modals.pdfViewer = $('#pdf-viewer-wrapper').modal({
+			show : false
+		});
 
 		modals.incomplete = $('#form-incomplete').modal({
 			show : false,

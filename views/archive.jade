@@ -1,9 +1,16 @@
 extends layout
 
 block content
+	.modal.fade.pdf-viewer-wrapper#pdf-viewer-wrapper(tabindex="-1" , role="dialog" , aria-labelledby="formIncomplete" , aria-hidden="true")
+		.modal-dialog.modal-sm
+			.modal-content
+				.modal-header
+					
+			.modal-body
+				canvas#pdf-viewer				          
 	.container.archive
 		.row
-			canvas#pdf-viewer
+			
 			if entries.length === 0
 				h3 No entries yet. Create one!
 			each entry in entries
