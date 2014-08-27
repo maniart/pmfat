@@ -21,7 +21,8 @@ var pmfat = (function(w, d, $, _) {
 	sanitizeFormData = function(serializedFormData) {
 		
 		if(!serializedFormData instanceof Array) {
-			throw new Error('Serialized Form Data needs to be an array.');
+			throw new TypeError('Serialized Form Data needs to be an array.');
+			return;
 		}
 		
 		_.each(serializedFormData, function(input) {
@@ -158,12 +159,11 @@ var pmfat = (function(w, d, $, _) {
     	}
     };
 
-    initPdfViewer = function() {
+    initPdfViewer = function(pdfPath) {
 
 
     	var	$body,
-    		currentPageTitle,
-    		url;
+    		currentPageTitle;
 
     	$body = $('body');
     	currentPageTitle = $body.data('pagetitle');
@@ -171,12 +171,8 @@ var pmfat = (function(w, d, $, _) {
     	if(currentPageTitle !== 'archive') {
     		return;
     	}
-    	// point to the worker, to be loaded async
-    	w.PDFJS.workerSrc = '/javascripts/thirdparty/pdf.worker.js';
-    	url = 'http://preliminarymaterialsforanytheory.com/pdf/Bob-Sponge-preliminatyMaterialsForTheTheoryOf-Blurry-Thing_TRw2w.pdf';
-
-
-    	PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
+    	
+    	PDFJS.getDocument(pdfPath).then(function getPdfHelloWorld(pdf) {
 	      //
 	      // Fetch the first page
 	      //
@@ -187,7 +183,7 @@ var pmfat = (function(w, d, $, _) {
 	        //
 	        // Prepare canvas using PDF page dimensions
 	        //
-	        var canvas = document.getElementById('the-canvas');
+	        var canvas = document.getElementById('pdf-viewer');
 	        var context = canvas.getContext('2d');
 	        canvas.height = viewport.height;
 	        canvas.width = viewport.width;
@@ -208,6 +204,13 @@ var pmfat = (function(w, d, $, _) {
 			w.setTimeout(function() {
 				$('#user-input input').eq(0).focus();
 			}, 250)
+		});
+
+		$('.view-pdf').on('click', function(event) {
+
+			event.preventDefault();
+			initPdfViewer($(this).data('pdfpath'));
+
 		});
 
 		var formData = {};
@@ -262,6 +265,9 @@ var pmfat = (function(w, d, $, _) {
 
 	init = function() {
 		
+		// point to the PDFJS worker, to be loaded async
+		w.PDFJS.workerSrc = '/javascripts/thirdparty/pdf.worker.js';
+
 		// dev
 		if(w.location.hash === '#dev') {
 			$('.under-construction').fadeOut(300);
@@ -285,10 +291,13 @@ var pmfat = (function(w, d, $, _) {
 		});
 
 		attachListeners();
+		
 		initAnchorScroll();
+		
 		initSnapScroll( ['index'] );
+		
 		initShareButton();		
-		initPdfViewer();
+				
 		console.log('Made in Industry City - \nLovely Sunset Park, Brooklyn.');
 	
 	};
