@@ -174,7 +174,7 @@ var pmfat = (function(w, d, $, _) {
     	}
 
     	$iframe = $('#pdf-viewer');
-    	$iframe[0].contentWindow.postMessage('loadpdf', pdfPath);
+    	$iframe[0].contentWindow.postMessage(pdfPath, 'http://preliminarymaterialsforanytheory.com/');
     	modals.pdfViewer.modal('show');
     	
     	
