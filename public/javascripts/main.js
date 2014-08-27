@@ -171,7 +171,8 @@ var pmfat = (function(w, d, $, _) {
     	if(currentPageTitle !== 'archive') {
     		return;
     	}
-
+    	// point to the worker, to be loaded async
+    	w.PDFJS.workerSrc = '/javascripts/thirdparty/pdf.worker.js';
     	url = 'http://preliminarymaterialsforanytheory.com/pdf/Bob-Sponge-preliminatyMaterialsForTheTheoryOf-Blurry-Thing_TRw2w.pdf';
 
 
