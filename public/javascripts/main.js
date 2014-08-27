@@ -174,7 +174,7 @@ var pmfat = (function(w, d, $, _) {
     	}
 
     	$iframe = $('#pdf-viewer');
-    	$iframe.contentWindow.postMessage('loadpdf', pdfPath);
+    	$iframe[0].contentWindow.postMessage('loadpdf', pdfPath);
     	modals.pdfViewer.modal('show');
     	
     	
