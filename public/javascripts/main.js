@@ -163,7 +163,8 @@ var pmfat = (function(w, d, $, _) {
 
 
     	var	$body,
-    		currentPageTitle;
+    		currentPageTitle,
+    		$iframe;
 
     	$body = $('body');
     	currentPageTitle = $body.data('pagetitle');
@@ -172,30 +173,11 @@ var pmfat = (function(w, d, $, _) {
     		return;
     	}
 
+    	$iframe = $('#pdf-viewer');
+    	$iframe.contentWindow.postMessage('loadpdf', pdfPath);
     	modals.pdfViewer.modal('show');
     	
-    	PDFJS.getDocument(pdfPath).then(function getPdfHelloWorld(pdf) {
-	      //
-	      // Fetch the first page
-	      //
-	      pdf.getPage(1).then(function getPageHelloWorld(page) {
-	        var scale = 1;
-	        var viewport = page.getViewport(scale);
-
-	        //
-	        // Prepare canvas using PDF page dimensions
-	        //
-	        var canvas = document.getElementById('pdf-viewer');
-	        var context = canvas.getContext('2d');
-	        canvas.height = viewport.height;
-	        canvas.width = viewport.width;
-	        
-	        //
-	        // Render PDF page into canvas context
-	        //
-	        page.render({canvasContext: context, viewport: viewport});
-	      });
-	    });
+    	
 
     };
 
