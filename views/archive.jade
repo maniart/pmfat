@@ -5,9 +5,13 @@ block content
 		.modal-dialog.modal-sm
 			.modal-content
 				.modal-header
-					
-			.modal-body
-				canvas#pdf-viewer				          
+					button(type="button" , class="close" , data-dismiss="modal")
+						span(aria-hidden="true")
+							| &times;
+						span(class="sr-only")
+							| Close		
+				.modal-body
+					canvas#pdf-viewer				          
 	.container.archive
 		.row
 			
