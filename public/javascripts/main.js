@@ -174,7 +174,6 @@ var pmfat = (function(w, d, $, _) {
 
     	url = 'http://preliminarymaterialsforanytheory.com/pdf/Bob-Sponge-preliminatyMaterialsForTheTheoryOf-Blurry-Thing_TRw2w.pdf';
 
-    	PDFJS.disableWorker = true;
 
     	PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
 	      //
