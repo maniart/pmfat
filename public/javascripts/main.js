@@ -164,7 +164,7 @@ var pmfat = (function(w, d, $, _) {
 
     	var	$body,
     		currentPageTitle,
-    		$iframe;
+    		iframe;
 
     	$body = $('body');
     	currentPageTitle = $body.data('pagetitle');
@@ -173,8 +173,11 @@ var pmfat = (function(w, d, $, _) {
     		return;
     	}
 
-    	$iframe = $('#pdf-viewer');
-    	$iframe[0].contentWindow.postMessage(pdfPath, 'http://preliminarymaterialsforanytheory.com/archive');
+    	//$iframe = $('#pdf-viewer');
+    	//$iframe[0].contentWindow.postMessage(pdfPath, 'http://preliminarymaterialsforanytheory.com/archive');
+    	iframe = d.querySelector('#pdf-viewer');
+    	iframe.src = 'http://preliminarymaterialsforanytheory.com/pdf/pdfjs/web/viewer.html?file=' + pdfPath;
+
     	modals.pdfViewer.modal('show');
     	
     	
@@ -188,12 +191,6 @@ var pmfat = (function(w, d, $, _) {
 			w.setTimeout(function() {
 				$('#user-input input').eq(0).focus();
 			}, 250)
-		});
-
-		// send message to viewer window when modal closed. we reset the pdf src in viewer.js on this message event.
-		$('#pdf-viewer-wrapper').on('hidden.bs.modal', function() { 
-			console.log('closed'); 
-			d.querySelector('#pdf-viewer').contentWindow.postMessage('closed', 'http://preliminarymaterialsforanytheory.com/archive');
 		});
 
 		$('.view-pdf').on('click', function(event) {
