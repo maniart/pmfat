@@ -164,7 +164,7 @@ var pmfat = (function(w, d, $, _) {
 
     	var	$body,
     		currentPageTitle,
-    		iframe;
+    		$iframe;
 
     	$body = $('body');
     	currentPageTitle = $body.data('pagetitle');
@@ -173,10 +173,11 @@ var pmfat = (function(w, d, $, _) {
     		return;
     	}
 
-    	iframe = d.querySelector('#pdf-viewer');
-    	iframe.src='./pdf/pdfjs/web/viewer.html?' + pdfPath;
+    	$iframe = $('#pdf-viewer');
+    	$iframe[0].contentWindow.postMessage(pdfPath, 'http://preliminarymaterialsforanytheory.com/archive');
     	modals.pdfViewer.modal('show');
-        	
+    	
+    	
 
     };
 
