@@ -238,6 +238,7 @@ body {
 				.border-radius(0px);
 				min-height: 250px;
 				height: auto;
+				position: relative;
 				.transition(all .3 ease);
 				img {
 					margin-top: 20px;
@@ -246,6 +247,9 @@ body {
 				&:hover {
 					background: rgba(240,240,240,1);
 					color: white;
+					.share {
+						.opacity(1);
+					}
 					
 				}
 				.author {
@@ -261,6 +265,21 @@ body {
 				}
 				.title {
 					font-weight: 100;
+				}
+				.share {
+					.transition(300ms all ease-in);
+					.opacity(0);
+					.entypo-export {
+						span {
+							display: none; // hide the "share" label
+							background-color: transparent;
+							color: #999;
+						}
+					}
+					position: absolute;
+					top: 5px;
+					right: 0;
+					width: 40px;
 				}
 			}
 		}
