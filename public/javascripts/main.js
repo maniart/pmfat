@@ -190,6 +190,12 @@ var pmfat = (function(w, d, $, _) {
 			}, 250)
 		});
 
+		// send message to viewer window when modal closed. we reset the pdf src in viewer.js on this message event.
+		$('#pdf-viewer-wrapper').on('hidden.bs.modal', function() { 
+			console.log('closed'); 
+			d.querySelector('#pdf-viewer').contentWindow.postMessage('closed', 'http://preliminarymaterialsforanytheory.com/archive');
+		});
+
 		$('.view-pdf').on('click', function(event) {
 
 			event.preventDefault();
