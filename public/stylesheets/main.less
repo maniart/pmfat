@@ -267,8 +267,13 @@ body {
 					font-weight: 100;
 				}
 				.share {
-					.transition(300ms all ease-in);
+					.transition(300ms all linear);
 					.opacity(0);
+					&:hover {
+						.entypo-export {
+							color: black;
+						}
+					}
 					.entypo-export {
 						span {
 							display: none; // hide the "share" label
