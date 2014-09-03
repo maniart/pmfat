@@ -25,7 +25,7 @@ block content
 						.date= entry.createdAtPretty
 						.author #{entry.lastName}, #{entry.firstName}
 						h3.hidden-invisible.title= entry.title
-						a.view-pdf(href="#" data-pdfpath="../../#{entry.pdfFileName}")
+						a.view-pdf(href="#" data-pdfpath="./pdf/#{entry.pdfFileName}")
 							img(src="./pdf/thumbnails/#{entry.thumbnailFileName}" , alt="#{entry.title}")
 						.share
 
