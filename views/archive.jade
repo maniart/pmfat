@@ -1,6 +1,21 @@
 extends layout
 
 block content
+
+
+	.modal.fade.file-not-found#file-not-found(tabindex="-1" , role="dialog" , aria-labelledby="pdfNotFound" , aria-hidden="true")
+		.modal-dialog.modal-sm
+			.modal-content
+				.modal-header
+					h4.modal-title#fileNotFoundTitle Preliminary Materials Not Found
+				.modal-body
+					p.message
+						| Oh no! The requested Preliminary Materials couldn't be found.
+						br
+						| Maybe try another one?
+				.modal-footer
+					button.btn.btn-default#close(type="button" , data-dismiss="modal") Close
+
 	.modal.fade.pdf-viewer-wrapper#pdf-viewer-wrapper(tabindex="-1" , role="dialog" , aria-labelledby="formIncomplete" , aria-hidden="true")
 		.modal-dialog.modal-sm
 			.modal-content
@@ -12,7 +27,7 @@ block content
 							| Close		
 				.modal-body
 					//- canvas#pdf-viewer
-					iframe#pdf-viewer(src="./pdf/pdfjs/web/viewer.html" allowfullscreen)
+					iframe#pdf-viewer(src="" allowfullscreen)
 	.container.archive
 		.row
 			
@@ -25,7 +40,7 @@ block content
 						.author #{entry.lastName}, #{entry.firstName}
 						.share
 						h3.hidden-invisible.title= entry.title
-						a.view-pdf(href="#" data-pdfpath="../../#{entry.pdfFileName}")
+						a.view-pdf(href="#" data-pdffilename="#{entry.pdfFileName}")
 							img(src="./pdf/thumbnails/#{entry.thumbnailFileName}" , alt="#{entry.title}")
 						
 

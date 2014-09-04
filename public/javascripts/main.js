@@ -11,7 +11,8 @@ var pmfat = (function(w, d, $, _) {
 		capitalizeFirstLetter,
 		initShareButton,
 		initShareButton,
-		initPdfViewer;
+		initPdfViewer,
+		checkHash;
 
 	modals = {};
 
@@ -41,6 +42,32 @@ var pmfat = (function(w, d, $, _) {
 		
 		return serializedFormData;
 	
+	};
+
+	checkHash = function() {
+
+		var hashFileName,
+			isFileInArchive;
+
+		if(w.location.hash === 0) { return; }
+
+		hashFileName = w.location.hash.slice(1);
+		isFileInArchive = false;
+
+		$('[data-pdffilename]').each(function(idx, el) {
+			if($(el).data('pdffilename') === hashFileName) {
+				return isFileInArchive = true;
+			}
+			
+		});
+
+		if(isFileInArchive) {
+			initPdfViewer(hashFileName);
+		} else {
+			modals.fileNotFound.modal('show');
+		}
+		
+
 	};
 
 	capitalizeFirstLetter = function(string) {
@@ -91,7 +118,11 @@ var pmfat = (function(w, d, $, _) {
 			},
 			networks : {
 				email : {
-					enabled : true
+					enabled : true,
+					before: function(element) {
+						console.log(element);
+					}
+				
 				},
 				google_plus : {
 					enabled : true
@@ -111,14 +142,7 @@ var pmfat = (function(w, d, $, _) {
 		};
 
 		shareButton = new Share('.share', config);
-		/*
-		$thumbnails.each(function(idx, el) {
-			$shareEl = $('.share', $(el));
-			
-			//console.log('shareEl is: ', $shareEl);
-		});
-*/
-
+		
 
     };
 
@@ -187,12 +211,13 @@ var pmfat = (function(w, d, $, _) {
     	}
     };
 
-    initPdfViewer = function(pdfPath) {
+    initPdfViewer = function(pdffilename) {
 
 
     	var	$body,
     		currentPageTitle,
-    		iframe;
+    		iframe,
+    		pdfPath;
 
     	$body = $('body');
     	currentPageTitle = $body.data('pagetitle');
@@ -201,13 +226,15 @@ var pmfat = (function(w, d, $, _) {
     		return;
     	}
 
+    	pdfPath = '../../' + pdffilename;
     	iframe = d.querySelector('#pdf-viewer');
-    	iframe.src = 'http://preliminarymaterialsforanytheory.com/pdf/pdfjs/web/viewer.html?file=' + pdfPath + '#page=1';
+    	iframe.src = 'http://preliminarymaterialsforanytheory.com/pdf/pdfjs/web/viewer.html?file=' 
+					+ pdfPath 
+					+ '#page=1&zoom=1'; 
+					// Reset page number and zoom
 
     	modals.pdfViewer.modal('show');
     	
-    	
-
     };
 
 	attachListeners = function() {
@@ -219,16 +246,16 @@ var pmfat = (function(w, d, $, _) {
 			}, 250)
 		});
 
-		// send message to viewer window when modal closed. we reset the pdf src in viewer.js on this message event.
+		
+		// Reset pdf viewer src
 		$('#pdf-viewer-wrapper').on('hidden.bs.modal', function() { 
-			console.log('closed'); 
-			d.querySelector('#pdf-viewer').contentWindow.postMessage('closed', 'http://preliminarymaterialsforanytheory.com/archive');
+			d.querySelector('#pdf-viewer').src = '';
 		});
 
 		$('.view-pdf').on('click', function(event) {
 
 			event.preventDefault();
-			initPdfViewer($(this).data('pdfpath'));
+			initPdfViewer($(this).data('pdffilename'));
 
 		});
 
@@ -296,6 +323,11 @@ var pmfat = (function(w, d, $, _) {
 			show : false
 		});
 
+		modals.fileNotFound = $('#file-not-found').modal({
+			show : false,
+			keyboard: true
+		});
+
 		modals.incomplete = $('#form-incomplete').modal({
 			show : false,
 			keyboard : true,
@@ -313,6 +345,8 @@ var pmfat = (function(w, d, $, _) {
 			backdrop: 'static'
 		});
 
+		checkHash();
+		
 		attachListeners();
 		
 		initAnchorScroll();
