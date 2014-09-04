@@ -229,6 +229,25 @@ body {
 }
 .container {
 	min-height: 100%;
+	&.four-o-four {
+		.not-found {
+			text-align: center;
+			color: #999;
+			.transform(translate(-50%, -50%));
+			top: 50%;
+			left: 50%;
+			position: absolute;
+			font-weight: 100;
+			font-size: 180%;
+			letter-spacing: 1px;
+			a {
+				color: @color-pink;
+				&:hover {
+					.opacity(.8);
+				}
+			}
+		}
+	}
 	&.archive {
 		
 		.no-entries {
