@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var MONGO_LOCAL = 'mongodb://localhost/pmfat';
+var MONGO_URL = 'mongodb://mani:formachineuseonly@localhost/pmfat';
 var routes = require('./routes/index');
 var archive = require('./routes/archive');
 var api = require('./routes/api');
@@ -99,6 +99,7 @@ process.on('exit', onExit);
 process.on('uncaughtException', onExit);
 process.on('SIGTERM', onExit);
 process.on('SIGINT', onExit);
+process.on('SIGKILL', onExit);
 
 
 // production error handler
@@ -112,7 +113,7 @@ app.use(function(err, req, res, next) {
 });
 
 /* BEGIN MONGODB */
-mongoose.connect('mongodb://localhost/pmfat');
+mongoose.connect(MONGO_URL);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
