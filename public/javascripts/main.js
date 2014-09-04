@@ -61,6 +61,10 @@ var pmfat = (function(w, d, $, _) {
 
 		$('[data-pdffilename]').each(function(idx, el) {
 			if($(el).data('pdffilename') === hashFileName) {
+				
+				thumbnailOffsetTop = $(el).offset().top - 170; // 170px buffer for fixed header
+				$w.scrollTop(thumbnailOffsetTop); // scroll the page down so that the requested thumbnail is at the top row of the thumbnails
+
 				return isFileInArchive = true;
 			}
 			
@@ -68,8 +72,6 @@ var pmfat = (function(w, d, $, _) {
 
 		if(isFileInArchive) {
 			initPdfViewer(hashFileName);
-			thumbnailOffsetTop = $('[data-pdffilename=' + hashFileName + ']').offset().top - 170; // 170px buffer for fixed header
-			$w.scrollTop(thumbnailOffsetTop); // scroll the page down so that the requested thumbnail is at the top row of the thumbnails
 		} else {
 			modals.fileNotFound.modal('show');
 		}
