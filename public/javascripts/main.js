@@ -267,15 +267,14 @@ var pmfat = (function(w, d, $, _) {
 			
 			if(isFormComplete()) {
 				
-				try {
-					formData = sanitizeFormData($('#user-input').serializeArray()); // trim whitespace
-				} catch(e) {
-					console.log(e);
-				}
-
 				populateConfirmModal(function() {
 					modals.confirm.modal('show')
 					.one('click', '#generate', function() {
+						try {
+							formData = sanitizeFormData($('#user-input').serializeArray()); // trim whitespace
+						} catch(e) {
+							console.log(e);
+						}
 						$.ajax({
 							type: "POST",
 							url: "/api",
