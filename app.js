@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var MONGO_URL = 'mongodb://mani:formachineuseonly@localhost:2717/pmfat';
+var MONGO_URL = 'mongodb://mani:holdmybreath@localhost/pmfat';
 var routes = require('./routes/index');
 var archive = require('./routes/archive');
 var api = require('./routes/api');
@@ -99,7 +99,6 @@ process.on('exit', onExit);
 process.on('uncaughtException', onExit);
 process.on('SIGTERM', onExit);
 process.on('SIGINT', onExit);
-process.on('SIGKILL', onExit);
 
 
 // production error handler
