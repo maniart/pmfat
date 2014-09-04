@@ -123,7 +123,7 @@ var pmfat = (function(w, d, $, _) {
 					enabled : true,
 					before: function(element) {
 						this.title = $(element).siblings('a').data('title');
-						this.description = 'Checkout my <a href="' + 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename') + '">semiotext</a>';
+						this.description = 'Checkout my semiotext: ' + 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
 						return this;
 					}
 				
