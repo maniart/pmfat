@@ -32,7 +32,9 @@ block content
 		.row
 			
 			if entries.length === 0
-				h3 No entries yet. Create one!
+				h3.no-entries 
+				| No entries yet. 
+				a(href="/") Create one!
 			each entry in entries
 				.col-md-3.col-xs-6
 					.thumbnail
