@@ -6,6 +6,7 @@ var pmfat = (function(w, d, $, _) {
 		initSnapScroll,
 		sanitizeFormData,
 		modals,
+		formData,
 		isFormComplete,
 		populateConfirmModal,
 		capitalizeFirstLetter,
@@ -15,6 +16,8 @@ var pmfat = (function(w, d, $, _) {
 		checkHash;
 
 	modals = {};
+
+	formData = {};
 
 	var $body = $('body');
     	var currentPageTitle = $body.data('pagetitle');
@@ -246,7 +249,6 @@ var pmfat = (function(w, d, $, _) {
 			}, 250)
 		});
 
-		
 		// Reset pdf viewer src
 		$('#pdf-viewer-wrapper').on('hidden.bs.modal', function() { 
 			d.querySelector('#pdf-viewer').src = '';
@@ -259,8 +261,6 @@ var pmfat = (function(w, d, $, _) {
 
 		});
 
-		var formData = {};
-
 		$('#user-input .submit-btn').on('click', function(event) {
 
 			event.preventDefault();
@@ -268,35 +268,7 @@ var pmfat = (function(w, d, $, _) {
 			if(isFormComplete()) {
 				
 				populateConfirmModal(function() {
-					modals.confirm.modal('show')
-					.one('click', '#generate', function() {
-						try {
-							formData = sanitizeFormData($('#user-input').serializeArray()); // trim whitespace
-						} catch(e) {
-							console.log(e);
-						}
-						$.ajax({
-							type: "POST",
-							url: "/api",
-						  	data: formData,
-						  	beforeSend: function() {
-						  		modals.confirm.modal('hide');
-						  		modals.processing.modal('show');
-						  		console.log('>> main.js : beforeSend');
-						  	}
-						})
-						.success(function( data, textStatus, jqXHR ) {
-							console.log("Success Received: " , data);
-							if(typeof data.redirect === 'string') {	
-								window.location = data.redirect;
-							} 
-						})
-						.done(function( data, textStatus, jqXHR ) {
-						    console.log('Submission Confirmed');
-						    console.log( "Data Saved: " , data );
-					  	});
-					  		
-					});	
+					modals.confirm.modal('show');	
 				});			
 
 			} else {
@@ -304,6 +276,36 @@ var pmfat = (function(w, d, $, _) {
 			}
 
 			
+		});
+
+		$('#generate').on('click',function(event) {
+			debugger;
+			try {
+				formData = sanitizeFormData($('#user-input').serializeArray()); // trim whitespace
+			} catch(e) {
+				console.log(e);
+			}
+			$.ajax({
+				type: "POST",
+				url: "/api",
+			  	data: formData,
+			  	beforeSend: function() {
+			  		modals.confirm.modal('hide');
+			  		modals.processing.modal('show');
+			  		console.log('>> main.js : beforeSend');
+			  	}
+			})
+			.success(function( data, textStatus, jqXHR ) {
+				console.log("Success Received: " , data);
+				if(typeof data.redirect === 'string') {	
+					window.location = data.redirect;
+				} 
+			})
+			.done(function( data, textStatus, jqXHR ) {
+			    console.log('Submission Confirmed');
+			    console.log( "Data Saved: " , data );
+		  	});
+		  		
 		});
 
 	};
