@@ -122,9 +122,8 @@ var pmfat = (function(w, d, $, _) {
 				email : {
 					enabled : true,
 					before: function(element) {
-						
-						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
-						this.text = 'Check out my semiotext';
+						this.title = $(element).siblings('a').data('title');
+						this.description = 'Checkout my semiotext: ' + 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
 						return this;
 					}
 				
@@ -141,7 +140,7 @@ var pmfat = (function(w, d, $, _) {
 					enabled : true,
 					before: function(element) {
 						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
-						this.title = 'Check out my semiotext! #semiotext';
+						this.title = 'Check out my semiotext: ' + $(element).siblings('a').data('title') +' #semiotext';
 						this.image = 'http://preliminarymaterialsforanytheory.com/' + $(element).siblings('a').children('img').attr('src').slice(2);
 						return this;
 					}
