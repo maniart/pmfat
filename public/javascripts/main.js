@@ -230,7 +230,7 @@ var pmfat = (function(w, d, $, _) {
     	iframe = d.querySelector('#pdf-viewer');
     	iframe.src = 'http://preliminarymaterialsforanytheory.com/pdf/pdfjs/web/viewer.html?file=' 
 					+ pdfPath 
-					+ '#page=1&zoom=1'; 
+					+ '#page=1&zoom=100'; 
 					// Reset page number and zoom
 
     	modals.pdfViewer.modal('show');
