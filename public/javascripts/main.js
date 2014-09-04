@@ -122,18 +122,39 @@ var pmfat = (function(w, d, $, _) {
 				email : {
 					enabled : true,
 					before: function(element) {
-						this.url = ''
+						
+						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
+						this.text = 'Check out my semiotext';
+						return this;
 					}
 				
 				},
 				google_plus : {
-					enabled : true
+					enabled : true,
+					before: function(element) {
+						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
+						this.text = 'Check out my semiotext';
+						return this;
+					}
 				},
 				facebook : {
-					enabled : true
+					enabled : true,
+					before: function(element) {
+						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
+						this.title = 'Check out my semiotext! #semiotext';
+						this.image = 'http://preliminarymaterialsforanytheory.com/' + $(element).siblings('a').children('img').attr('src').slice(2);
+						return this;
+					}
 				},
 				twitter : {
-					enabled : true
+					enabled : true,
+					
+					before: function(element) {
+						//debugger;
+						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
+						this.description = 'Check out my semiotext! #semiotext @semiotext';
+						return this;
+					}
 				},
 				
 				pinterest : {
@@ -277,7 +298,7 @@ var pmfat = (function(w, d, $, _) {
 		});
 
 		$('#generate').on('click',function(event) {
-			debugger;
+			//debugger;
 			try {
 				formData = sanitizeFormData($('#user-input').serializeArray()); // trim whitespace
 			} catch(e) {
