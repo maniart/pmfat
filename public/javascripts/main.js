@@ -76,20 +76,48 @@ var pmfat = (function(w, d, $, _) {
     	
     	var $body,
     		currentPageTitle,
-    		$thumbnails,
-    		$shareEl;
+    		config,
+    		shareButton;
 
     	$body = $('body');
     	currentPageTitle = $body.data('pagetitle');
-    	$thumbnails = $('.thumbnail');
 
 		if(currentPageTitle !== 'archive') { return; }
 
-		new Share('.share');
-		 $thumbnails.each(function(idx, el) {
-		 	$shareEl = $('.share', $(el));
-		 	//console.log('shareEl is: ', $shareEl);
-		 });
+		config = {
+			ui : {
+				flyout : 'bottom left',
+				button_text : ''
+			},
+			networks : {
+				email : {
+					enabled : true
+				},
+				google_plus : {
+					enabled : true
+				},
+				facebook : {
+					enabled : true
+				},
+				twitter : {
+					enabled : true
+				},
+				
+				pinterest : {
+					enabled : true // turning this off via CSS. Hacky, but oh well.
+				}
+
+			}
+		};
+
+		shareButton = new Share('.share', config);
+		/*
+		$thumbnails.each(function(idx, el) {
+			$shareEl = $('.share', $(el));
+			
+			//console.log('shareEl is: ', $shareEl);
+		});
+*/
 
 
     };
