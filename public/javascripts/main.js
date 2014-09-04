@@ -49,7 +49,7 @@ var pmfat = (function(w, d, $, _) {
 		var hashFileName,
 			isFileInArchive;
 
-		if(w.location.hash === 0) { return; }
+		if(w.location.hash.length === 0) { return; }
 
 		hashFileName = w.location.hash.slice(1);
 		isFileInArchive = false;
