@@ -19,8 +19,7 @@ var pmfat = (function(w, d, $, _) {
 
 	formData = {};
 
-	var $body = $('body');
-    	var currentPageTitle = $body.data('pagetitle');
+	
 
 	sanitizeFormData = function(serializedFormData) {
 		
@@ -81,7 +80,7 @@ var pmfat = (function(w, d, $, _) {
     	}
 
     	return string.charAt(0).toUpperCase() + string.slice(1);
-	}
+	};
 
 	initAnchorScroll = function() {
     	
@@ -123,7 +122,7 @@ var pmfat = (function(w, d, $, _) {
 				email : {
 					enabled : true,
 					before: function(element) {
-						console.log(element);
+						this.url = ''
 					}
 				
 				},
@@ -215,7 +214,6 @@ var pmfat = (function(w, d, $, _) {
     };
 
     initPdfViewer = function(pdffilename) {
-
 
     	var	$body,
     		currentPageTitle,

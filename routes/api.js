@@ -34,7 +34,8 @@ var binPath,
     fullPath,
     entry,
     pronounLookupTable,
-    phantomArgs;
+    phantomArgs,
+    replaceSpacesWithDash;
 
 phantomArgs = [];
 binPath = phantomjs.path;
@@ -46,6 +47,16 @@ pdfPath = path.join(__dirname, '../../public_html/pdf/');
 thumbnailPath = path.join(__dirname, '../../public_html/pdf/thumbnails/');
 htmlPath = path.join(__dirname, '../../public_html/pdf/tmp/');
 
+replaceSpacesWithDash = function(string) {
+
+    if(typeof string !== 'string') {
+        throw new TypeError('Input should be a string');
+        return;
+    }
+
+    return string.replace(/\s+/g, '-');
+
+};
 
 pronounLookupTable = {
     he : {
@@ -76,6 +87,10 @@ router.post('/', function(req, res) {
                 + req.body.objectOfCritique 
                 + '_' 
                 + random.generate(5);
+
+    baseFileName = replaceSpacesWithDash(baseFileName);
+
+    baseFileName = encodeURIComponent(baseFileName);
     
     pdfFileName = baseFileName + '.pdf'; // final pdf output file name
     thumbnailFileName = baseFileName + '.png'; // final cover output file name
@@ -153,7 +168,7 @@ router.post('/', function(req, res) {
                         res.end();
                     }
                 });
-                
+
                 phantomProcess.stdout.on('data', function(data) {
                     console.log(data.toString()); 
                 });
