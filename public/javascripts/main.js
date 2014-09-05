@@ -14,11 +14,14 @@ var pmfat = (function(w, d, $, _) {
 		initShareButton,
 		initPdfViewer,
 		checkHash,
-		shareButton;
+		shareButton,
+		isShareButtonReady;
 
 	modals = {};
 
 	formData = {};
+
+	isShareButtonReady = false;
 
 	sanitizeFormData = function(serializedFormData) {
 		
@@ -169,6 +172,7 @@ var pmfat = (function(w, d, $, _) {
 		};
 
 		shareButton = new Share('.share', config);
+		isShareButtonReady = true;
 		
 
     };
@@ -267,20 +271,33 @@ var pmfat = (function(w, d, $, _) {
 		
 		//focus on the form as soon as user scrolls down
 		$('.generate-text').on('click', function(ev){
+			
 			w.setTimeout(function() {
 				$('#user-input input').eq(0).focus();
 			}, 250)
+		
 		});
 
-		// Reset pdf viewer src
+		// Reset pdf viewer src when viewer modal closes
 		$('#pdf-viewer-wrapper').on('hidden.bs.modal', function() { 
+		
 			d.querySelector('#pdf-viewer').src = '';
+		
 		});
 
+		// kick off viewer modal
 		$('.view-pdf').on('click', function(event) {
 
 			event.preventDefault();
 			initPdfViewer($(this).data('pdffilename'));
+
+		});
+
+		// close share button if it's open, when mouse leavse a thumbnail
+		$('.thumbnail').on('mouseleave', function(event) {
+
+			if(!isShareButtonReady) { return; }
+			shareButton.close();
 
 		});
 
