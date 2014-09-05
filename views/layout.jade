@@ -29,7 +29,23 @@ html(lang='en')
   
   body(data-pagetitle="#{bodyClass}")
     
-    script(id="facebook-jssdk" src="//connect.facebook.net/en_US/all.js")
+    script(type='text/javascript').
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '363579610460876',
+          xfbml      : true,
+          version    : 'v2.0'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    //-script(id="facebook-jssdk" src="//connect.facebook.net/en_US/all.js")
     nav.main-nav.navbar.navbar-fixed-top(role='navigation')
       .container
           .row

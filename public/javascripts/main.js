@@ -146,7 +146,6 @@ var pmfat = (function(w, d, $, _) {
 				},
 				facebook : {
 					enabled : true,
-					app_id: '363579610460876',
 					before: function(element) {
 						this.app_id = '363579610460876',
 						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
