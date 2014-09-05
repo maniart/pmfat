@@ -363,9 +363,12 @@ var pmfat = (function(w, d, $, _) {
 		w.PDFJS.workerSrc = '/javascripts/thirdparty/pdf.worker.js';
 
 		// dev
+		
+		/*
 		if(w.location.hash === '#dev') {
 			$('.under-construction').fadeOut(300);
 		}
+		*/
 
 		modals.pdfViewer = $('#pdf-viewer-wrapper').modal({
 			show : false
