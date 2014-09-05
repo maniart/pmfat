@@ -156,6 +156,12 @@ var pmfat = (function(w, d, $, _) {
 									+ 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename')
 									+ 'create your own: '
 									+ 'http://preliminarymaterialsforanytheory.com/';
+						this.description = 'This mind blowing new title from Tiqqun will forever change your theoretical outlook:'
+									+ $(element).siblings('a').data('title')
+									+ ' '
+									+ 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename')
+									+ 'create your own: '
+									+ 'http://preliminarymaterialsforanytheory.com/';
 						return this;
 					}
 				},
