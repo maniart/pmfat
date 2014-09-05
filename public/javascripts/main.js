@@ -13,13 +13,12 @@ var pmfat = (function(w, d, $, _) {
 		initShareButton,
 		initShareButton,
 		initPdfViewer,
-		checkHash;
+		checkHash,
+		shareButton;
 
 	modals = {};
 
 	formData = {};
-
-	
 
 	sanitizeFormData = function(serializedFormData) {
 		
@@ -112,8 +111,7 @@ var pmfat = (function(w, d, $, _) {
     	
     	var $body,
     		currentPageTitle,
-    		config,
-    		shareButton;
+    		config;
 
     	$body = $('body');
     	currentPageTitle = $body.data('pagetitle');
