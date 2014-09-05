@@ -131,7 +131,7 @@ var pmfat = (function(w, d, $, _) {
 					enabled : true,
 					before: function(element) {
 						this.title = $(element).siblings('a').data('title');
-						this.description = 'Checkout my semiotext: ' + 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
+						this.description = 'Check out my own new Tiqqun title: (' + this.title + ')  ' + 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
 						return this;
 					}
 				
@@ -140,7 +140,7 @@ var pmfat = (function(w, d, $, _) {
 					enabled : true,
 					before: function(element) {
 						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
-						this.text = 'Check out my semiotext';
+						this.text = 'Check out my own new Tiqqun title: (' + this.title + ')';
 						return this;
 					}
 				},
@@ -148,8 +148,14 @@ var pmfat = (function(w, d, $, _) {
 					enabled : true,
 					before: function(element) {
 						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
-						this.title = 'Check out my semiotext: ' + $(element).siblings('a').data('title') +' #semiotext';
+						this.title = $(element).siblings('a').data('title');
 						this.image = 'http://preliminarymaterialsforanytheory.com/' + $(element).siblings('a').children('img').attr('src').slice(2);
+						this.caption = 'This mind blowing new title from Tiqqun will forever change your theoretical outlook:'
+									+ $(element).siblings('a').data('title')
+									+ ' '
+									+ 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename')
+									+ 'create your own: '
+									+ 'http://preliminarymaterialsforanytheory.com/';
 						return this;
 					}
 				},
@@ -157,9 +163,10 @@ var pmfat = (function(w, d, $, _) {
 					enabled : true,
 					
 					before: function(element) {
-						//debugger;
-						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
-						this.description = 'Check out my semiotext! #semiotext @semiotext';
+						this.url = '';
+						this.description = 'Check out this mind blowing new title from Tiqqun.'
+											+ 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename')  
+											+ 'Create yours: http://preliminarymaterialsforanytheory.com';
 						return this;
 					}
 				},
