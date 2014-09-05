@@ -164,9 +164,9 @@ var pmfat = (function(w, d, $, _) {
 					
 					before: function(element) {
 						this.url = '';
-						this.description = 'Check out this mind blowing new title from Tiqqun.'
+						this.description = 'Check out this mind blowing new title from Tiqqun: '
 											+ 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename')  
-											+ 'Create yours: http://preliminarymaterialsforanytheory.com';
+											+ ' Create yours: http://preliminarymaterialsforanytheory.com';
 						return this;
 					}
 				},
