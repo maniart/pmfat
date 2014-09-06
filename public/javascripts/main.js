@@ -127,6 +127,7 @@ var pmfat = (function(w, d, $, _) {
 				button_text : ''
 			},
 			networks : {
+				/*
 				email : {
 					enabled : true,
 					before: function(element) {
@@ -144,10 +145,14 @@ var pmfat = (function(w, d, $, _) {
 						return this;
 					}
 				},
+				*/
 				facebook : {
 					enabled : true,
+					app_id : '363579610460876'
+					/*
+					,
+					
 					before: function(element) {
-						this.app_id = '363579610460876',
 						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
 						this.title = $(element).siblings('a').data('title');
 						this.image = 'http://preliminarymaterialsforanytheory.com/' + $(element).siblings('a').children('img').attr('src').slice(2);
@@ -165,7 +170,11 @@ var pmfat = (function(w, d, $, _) {
 									+ 'http://preliminarymaterialsforanytheory.com/';
 						return this;
 					}
-				},
+					*/
+				}
+				/*
+				,
+				
 				twitter : {
 					enabled : true,
 					
@@ -181,7 +190,7 @@ var pmfat = (function(w, d, $, _) {
 				pinterest : {
 					enabled : true // turning this off via CSS. Hacky, but oh well.
 				}
-
+				*/
 			}
 		};
 
