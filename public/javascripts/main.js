@@ -148,29 +148,15 @@ var pmfat = (function(w, d, $, _) {
 				*/
 				facebook : {
 					enabled : true,
-					app_id : '363579610460876'
-					
-					,
+					app_id : '363579610460876',
 					
 					before: function(element) {
 						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
 						this.title = $(element).siblings('a').data('title');
 						this.image = 'http://preliminarymaterialsforanytheory.com/' + $(element).siblings('a').children('img').attr('src').slice(2);
-						/*
-						this.caption = 'This mind blowing new title from Tiqqun will forever change your theoretical outlook:'
-									+ $(element).siblings('a').data('title')
-									+ ' '
-									+ 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename')
-									+ 'create your own: '
-									+ 'http://preliminarymaterialsforanytheory.com/';
-						*/
-						this.caption = 'boogh';
-						this.description = 'This mind blowing new title from Tiqqun will forever change your theoretical outlook:'
-									+ $(element).siblings('a').data('title')
-									+ ' '
-									+ 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename')
-									+ 'create your own: '
-									+ 'http://preliminarymaterialsforanytheory.com/';
+						this.caption = 'Create your own Preliminary Mateirals: http://preliminarymaterialsforanytheory.com';
+						this.description = 'This mind blowing new title from Tiqqun will forever change your theoretical outlook: '
+									+ $(element).siblings('a').data('title');
 						return this;
 					}
 					
