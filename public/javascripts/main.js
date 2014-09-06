@@ -134,14 +134,14 @@ var pmfat = (function(w, d, $, _) {
 						this.title = $(element).siblings('a').data('title');
 						this.description = 'Check out my own new Tiqqun title: ' 
 										+ this.title  
-										+ 'http://preliminarymaterialsforanytheory.com/archive#' 
+										+ ' http://preliminarymaterialsforanytheory.com/archive#' 
 										+ $(element).siblings('a').data('pdffilename')
 										+ ' Create your own Preliminary Materials: http://preliminarymaterialsforanytheory.com';
 						return this;
 					}
 				
 				},
-				/*
+				
 				google_plus : {
 					enabled : true,
 					before: function(element) {
@@ -150,7 +150,7 @@ var pmfat = (function(w, d, $, _) {
 						return this;
 					}
 				},
-				*/
+				
 				facebook : {
 					enabled : true,
 					app_id : '363579610460876',
