@@ -154,7 +154,7 @@ var pmfat = (function(w, d, $, _) {
 						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
 						this.title = $(element).siblings('a').data('title');
 						this.image = 'http://preliminarymaterialsforanytheory.com/' + $(element).siblings('a').children('img').attr('src').slice(2);
-						this.caption = 'Create your own Preliminary Mateirals: <br> preliminarymaterialsforanytheory.com';
+						this.caption = 'Create your own Preliminary Mateirals:     preliminarymaterialsforanytheory.com';
 						this.description = 'This mind blowing new title from Tiqqun will forever change your theoretical outlook: '
 									+ $(element).siblings('a').data('title');
 						return this;
