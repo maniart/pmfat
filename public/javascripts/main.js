@@ -149,7 +149,7 @@ var pmfat = (function(w, d, $, _) {
 				facebook : {
 					enabled : true,
 					app_id : '363579610460876'
-					/*
+					
 					,
 					
 					before: function(element) {
@@ -170,7 +170,7 @@ var pmfat = (function(w, d, $, _) {
 									+ 'http://preliminarymaterialsforanytheory.com/';
 						return this;
 					}
-					*/
+					
 				}
 				/*
 				,
