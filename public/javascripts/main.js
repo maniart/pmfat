@@ -127,7 +127,7 @@ var pmfat = (function(w, d, $, _) {
 				button_text : ''
 			},
 			networks : {
-				/*
+				
 				email : {
 					enabled : true,
 					before: function(element) {
@@ -137,6 +137,7 @@ var pmfat = (function(w, d, $, _) {
 					}
 				
 				},
+				/*
 				google_plus : {
 					enabled : true,
 					before: function(element) {
