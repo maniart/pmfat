@@ -132,7 +132,11 @@ var pmfat = (function(w, d, $, _) {
 					enabled : true,
 					before: function(element) {
 						this.title = $(element).siblings('a').data('title');
-						this.description = 'Check out my own new Tiqqun title: (' + this.title + ')  ' + 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
+						this.description = 'Check out my own new Tiqqun title: ' 
+										+ this.title  
+										+ 'http://preliminarymaterialsforanytheory.com/archive#' 
+										+ $(element).siblings('a').data('pdffilename')
+										+ ' Create your own Preliminary Materials: http://preliminarymaterialsforanytheory.com';
 						return this;
 					}
 				
@@ -155,7 +159,7 @@ var pmfat = (function(w, d, $, _) {
 						this.url = 'http://preliminarymaterialsforanytheory.com/archive#' + $(element).siblings('a').data('pdffilename');
 						this.title = $(element).siblings('a').data('title');
 						this.image = 'http://preliminarymaterialsforanytheory.com/' + $(element).siblings('a').children('img').attr('src').slice(2);
-						this.caption = 'Create your own Preliminary Mateirals: http://preliminarymaterialsforanytheory.com';
+						this.caption = 'Create your own Preliminary Materials: http://preliminarymaterialsforanytheory.com';
 						this.description = 'This mind blowing new title from Tiqqun will forever change your theoretical outlook: '
 									+ $(element).siblings('a').data('title');
 						return this;
