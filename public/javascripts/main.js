@@ -372,10 +372,11 @@ var pmfat = (function(w, d, $, _) {
 
 		// dev
 		
-		
+		/*
 		if(w.location.hash === '#dev') {
 			$('.under-construction').fadeOut(300);
 		}
+		*/
 		
 		modals.pdfViewer = $('#pdf-viewer-wrapper').modal({
 			show : false
