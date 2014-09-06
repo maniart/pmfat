@@ -165,9 +165,7 @@ var pmfat = (function(w, d, $, _) {
 						return this;
 					}
 					
-				}
-				/*
-				,
+				},
 				
 				twitter : {
 					enabled : true,
@@ -184,7 +182,7 @@ var pmfat = (function(w, d, $, _) {
 				pinterest : {
 					enabled : true // turning this off via CSS. Hacky, but oh well.
 				}
-				*/
+				
 			}
 		};
 
