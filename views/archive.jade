@@ -43,7 +43,7 @@ block content
 						.share
 						h3.hidden-invisible.title= entry.title
 						a.view-pdf(href="#" data-pdffilename="#{entry.pdfFileName}" data-title="#{entry.title}")
-							img(src="./pdf/thumbnails/#{entry.thumbnailFileName}" , alt="#{entry.title}")
+							img(data-src="./pdf/thumbnails/#{entry.thumbnailFileName}" , src="./pdf/thumbnails/#{entry.thumbnailFileName}" , alt="#{entry.title}")
 						
 
 					
