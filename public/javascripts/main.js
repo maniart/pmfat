@@ -282,6 +282,10 @@ var pmfat = (function(w, d, $, _) {
     	
     };
 
+    initLazyLoad = function() {
+    	$("img").unveil();
+    };
+
 	attachListeners = function() {
 		
 		//focus on the form as soon as user scrolls down
@@ -377,7 +381,7 @@ var pmfat = (function(w, d, $, _) {
 			$('.under-construction').fadeOut(300);
 		}
 		*/
-		
+
 		modals.pdfViewer = $('#pdf-viewer-wrapper').modal({
 			show : false
 		});
@@ -412,7 +416,9 @@ var pmfat = (function(w, d, $, _) {
 		
 		initSnapScroll( ['index'] );
 		
-		initShareButton();		
+		initShareButton();	
+
+		initLazyLoad();	
 				
 		console.log('Made in Industry City - \nLovely Sunset Park, Brooklyn.');
 	

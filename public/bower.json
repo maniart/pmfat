@@ -11,6 +11,6 @@
     "underscore": "~1.6.0",
     "panelsnap": "~0.12.0",
     "share-button": "~0.4.1",
-    "lazyload": "~2.1.3"
+    "unveil": "~1.3.0"
   }
 }
