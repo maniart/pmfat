@@ -15,6 +15,8 @@ var pmfat = (function(w, d, $, _) {
 		initPdfViewer,
 		checkHash,
 		shareButton,
+		initLazyLoad,
+		pmfatLzld,
 		isShareButtonReady;
 
 	modals = {};
@@ -46,6 +48,14 @@ var pmfat = (function(w, d, $, _) {
 		
 		return serializedFormData;
 	
+	};
+
+	initLazyLoad = function() {
+		pmfatLzld = lazyload({
+			container: document.body,
+			offset: 100,
+			src: 'data-src'
+		});
 	};
 
 	checkHash = function() {
@@ -367,6 +377,8 @@ var pmfat = (function(w, d, $, _) {
 
 	init = function() {
 		
+		initLazyLoad();
+
 		// point to the PDFJS worker, to be loaded async
 		w.PDFJS.workerSrc = '/javascripts/thirdparty/pdf.worker.js';
 
