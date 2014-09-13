@@ -414,7 +414,7 @@ var pmfat = (function(w, d, $, _) {
 		
 		initShareButton();		
 				
-		console.log('Made in Industry City - \nLovely Sunset Park, Brooklyn.');
+		console.log('Made in Industry City - \nLovely Sunset Park, Brooklyn. Hello from new macbook');
 	
 	};
 
