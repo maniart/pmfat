@@ -16,7 +16,6 @@ var pmfat = (function(w, d, $, _) {
 		checkHash,
 		shareButton,
 		initLazyLoad,
-		pmfatLzld,
 		isShareButtonReady;
 
 	modals = {};
@@ -51,7 +50,7 @@ var pmfat = (function(w, d, $, _) {
 	};
 
 	initLazyLoad = function() {
-		pmfatLzld = lazyload({
+		w.pmfatLzld = lazyload({
 			container: document.body,
 			offset: 100,
 			src: 'data-src'
