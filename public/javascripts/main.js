@@ -365,9 +365,9 @@ var pmfat = (function(w, d, $, _) {
 
 		$('.thumbnail').on('mouseenter', function(ev) {
 			//console.log('mousenter ev: ', ev);
-			var id = '#' + $(this).find('.share').attr('id');
-			console.log('id is: ', id);
-			new Share(id, shareBtnConfig);
+			var className = '.' + $(this).find('.share').attr('id');
+			console.log('className is: ', className);
+			new Share(className, shareBtnConfig);
 		});
 
 		// Reset pdf viewer src when viewer modal closes
