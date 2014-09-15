@@ -416,7 +416,7 @@ var pmfat = (function(w, d, $, _) {
 		
 		initSnapScroll( ['index'] );
 		
-		//initShareButton();	
+		setTimeout(initShareButton,1);	
 
 		initLazyLoad();	
 				
