@@ -297,6 +297,10 @@ var pmfat = (function(w, d, $, _) {
 		
 		});
 
+		$('.thumbnail').on('mouseenter', function(ev) {
+			console.log('mousenter ev: ', ev);
+		});
+
 		// Reset pdf viewer src when viewer modal closes
 		$('#pdf-viewer-wrapper').on('hidden.bs.modal', function() { 
 		
