@@ -365,7 +365,8 @@ var pmfat = (function(w, d, $, _) {
 
 		$('.thumbnail').on('mouseenter', function(ev) {
 			//console.log('mousenter ev: ', ev);
-			var className = '.' + $(this).find('.share').attr('id');
+			var classNames = $(this).find('.share').attr('class').split(' '),
+				className = classNames[1];
 			console.log('className is: ', className);
 			new Share(className, shareBtnConfig);
 		});
