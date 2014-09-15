@@ -27,7 +27,7 @@ var pmfat = (function(w, d, $, _) {
 
 	isShareButtonReady = false;
 
-	shareButtonWorker = new Worker('initsharebuttons.js');
+	shareButtonWorker = new Worker('sharebuttonsworker.js');
 
 	initShareButtonsWorker = function() {
 
