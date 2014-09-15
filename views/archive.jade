@@ -42,7 +42,7 @@ block content
 					.thumbnail
 						.date= entry.createdAtPretty
 						.author #{entry.lastName}, #{entry.firstName}
-						.share.#{entry.pdfFileName}
+						div(class="share #{entry.pdfFileName}")
 						h3.hidden-invisible.title= entry.title
 						a.view-pdf(href="#" data-pdffilename="#{entry.pdfFileName}" data-title="#{entry.title}")
 							img(data-src="./pdf/thumbnails/#{entry.thumbnailFileName}" , src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" , alt="#{entry.title}")
